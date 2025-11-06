@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inventory extends Model
 {
-    protected $table = 'inventory';
+    protected $table = 'inventories';
     protected $primaryKey = 'id';
     protected $fillable = [
     'kode',
