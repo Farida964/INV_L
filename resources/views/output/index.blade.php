@@ -7,34 +7,36 @@
     <link rel="stylesheet" href="{{ asset('assets/css/aspirasi.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
     
-    <title>Inventory</title>
+    <title>Output</title>
 </head>
 <body>
   
     <!-- card agenda -->
     <br>
-    <a href="{{ route('inventory.index') }}" class="back">Back</a>
-    <a href="{{ route('inventory.create') }}" class="add">Add +</a>
+    <a href="{{ route('output.index') }}" class="back">Back</a>
+    <a href="{{ route('output.create') }}" class="add">Add +</a>
 
     <div class="container_card">
-        @foreach($allInventory as $key => $inv)
+        @foreach($allOutput as $key => $out)
             <div class="card-item">
-                <h2>{{ $inv->nama }}</h2>
-                <p class="caption">✍️ : {{ $inv->kode }}</p>
-                <p>{{ $inv->warna }}</p>
-                <p>{{ $inv->ukuran }}</p>
-                <p>{{ $inv->stok }}</p>
-                <p>{{ $inv->masuk }}</p>
-                <p>{{ $inv->keluar }}</p>
-                <p>{{ $inv->ukuran }}</p>
-                <p>{{ $inv->harga }}</p>
-                <p>{{ $inv->keuntungan }}</p>
-                <p>{{ $inv->keterangan }}</p>
-                <p>Uploaded: {{ $inv->created_at }}</p>
-                <p>Updated: {{ $inv->updated_at }}</p>
-                <form action="{{ route('inventory.destroy', $inv->id) }}" method="POST">
+                <h2>{{ $out->nama }}</h2>
+                <p class="caption">✍️ : {{ $out->kode }}</p>
+                <p>{{ $out->warna }}</p>
+                <p>{{ $out->ukuran }}</p>
+                <p>{{ $out->stok }}</p>
+                <p>{{ $out->masuk }}</p>
+                <p>{{ $out->keluar }}</p>
+                <p>{{ $out->ukuran }}</p>
+                <p>{{ $out->harga }}</p>
+                <p>{{ $out->keuntungan }}</p>
+                <p>{{ $out->keterangan }}</p>
+                <p>{{ $out->status }}</p>
+                <p>{{ $out->pembayaran }}</p>
+                <p>Uploaded: {{ $out->created_at }}</p>
+                <p>Updated: {{ $out->updated_at }}</p>
+                <form action="{{ route('output.destroy', $out->id) }}" method="POST">
                     @auth
-                        <a href="{{ route('inventory.edit', $inv->id) }}" class="edit">Edit</a>
+                        <a href="{{ route('output.edit', $out->id) }}" class="edit">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete">Hapus</button>

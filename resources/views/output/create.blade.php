@@ -7,7 +7,7 @@
 </head>
 <body>
 
-  <h3>Form Input Data Inventory</h3>
+  <h3>Form Output Data Inventory</h3>
 
   {{-- Tampilkan pesan error jika ada --}}
   @if ($errors->any())
@@ -19,9 +19,9 @@
           </ul>
       </div>
   @endif
-   <a href="{{ route('inventory.index') }}" class="back">Back</a>
+   <a href="{{ route('output.index') }}" class="back">Back</a>
 
-  <form action="{{ route('inventory.store') }}" method="POST">
+  <form action="{{ route('output.store') }}" method="POST">
       @csrf
       <div class="form_agd">
 
@@ -54,6 +54,13 @@
 
           <label for="keterangan">Keterangan:</label>
           <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
+
+           <label for="keterangan">Status:</label>
+          <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
+
+           <label for="keterangan">Pembayaran:</label>
+          <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
+          
 
       </div>
 
