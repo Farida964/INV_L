@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <h3>Form Output Data Inventory</h3>
+  <h3>Done</h3>
 
   {{-- Tampilkan pesan error jika ada --}}
   @if ($errors->any())
@@ -59,17 +59,17 @@
           <label for="status">Status:</label>
           <select name="status" id="status">
               <option value="">Pilih status</option>
-              <option value="list" {{ old('status') == 'List' ? 'selected' : '' }}>List</option>
-              <option value="packing" {{ old('status') == 'Packing' ? 'selected' : '' }}>Packing</option>
-              <option value="delivering" {{ old('status') == 'Delivering' ? 'selected' : '' }}>Delivering</option>
-              <option value="arrive" {{ old('status') == 'Arrive' ? 'selected' : '' }}>Arrive</option>
+              <option value="list" {{ old('status') == 'List' ? 'selected' : '' }}>Ready</option>
+              <option value="packing" {{ old('status') == 'Packing' ? 'selected' : '' }}>Sold</option>
+              <option value="delivering" {{ old('status') == 'Delivering' ? 'selected' : '' }}>Returned</option>
+              <option value="arrive" {{ old('status') == 'Arrive' ? 'selected' : '' }}>Returned</option>
           </select>
 
           <label for="pembayaran">Pembayaran:</label>
           <select name="pembayaran" id="pembayaran">
               <option value="">Pilih pembayaran</option>
               <option value="tunai" {{ old('pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
-              <option value="cod" {{ old('pembayaran') == 'cod' ? 'selected' : '' }}>COD</option>
+              <option value="cod" {{ old('pembayaran') == 'cod' ? 'selected' : '' }}>Kredit</option>
               <option value="transfer" {{ old('pembayaran') == 'transfer' ? 'selected' : '' }}>Transfer</option>
           </select>
           

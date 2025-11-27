@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\OutputController;
+use App\Http\Controllers\DoneController;
+use App\Http\Controllers\LabaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,6 +17,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Resource routes untuk Inventory
     Route::resource('inventory', InventoryController::class);
     Route::resource('output', OutputController::class);
+    Route::resource('done', DoneController::class);
+    Route::resource('laba', LabaController::class);
 
     // Dashboard
     Route::get('/dashboard', function () {

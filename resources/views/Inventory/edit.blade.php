@@ -4,47 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Inventory</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/createinv.css') }}">
+
 </head>
 <body>
-    <h3>Edit Inventory</h3>
+     <!-- FORM WRAPPER -->
+    <section class="form-wrapper">
 
-    <form action="{{ route('inventory.update', $inventory->id) }}" method="POST">
+        <h3 class="form-title">EDIT PRODUK</h3>
+
+        {{-- Error Message --}}
+        @if ($errors->any())
+            <div class="error-box">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+    <form action="{{ route('inventory.update', $inventory->id) }}" method="POST" class="form-box">
         @csrf
         @method('PUT')
 
-        <div class="form_inv">
-            <label for="kode">Kode:</label>
-            <input type="text" name="kode" id="kode" value="{{ old('kode', $inventory->kode) }}" placeholder="Masukkan kode">
+      <!-- LEFT LABEL RIGHT INPUT -->
+            <div class="row">
+                <label>KODE PRODUK :</label>
+                <input type="text" name="kode" value="{{ old('kode') }}" placeholder="HJ-01">
+            </div>
 
-            <label for="nama">Nama:</label>
-            <input type="text" name="nama" id="nama" value="{{ old('nama', $inventory->nama) }}" placeholder="Nama barang">
+            <div class="row">
+                <label>NAMA PRODUK :</label>
+                <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Pashmina Ceruty">
+            </div>
 
-            <label for="warna">Warna:</label>
-            <input type="text" name="warna" id="warna" value="{{ old('warna', $inventory->warna) }}" placeholder="Warna">
+            <div class="row">
+                <label>WARNA :</label>
+                <input type="text" name="warna" value="{{ old('warna') }}" placeholder="Dusty Pink">
+            </div>
 
-            <label for="ukuran">Ukuran:</label>
-            <input type="text" name="ukuran" id="ukuran" value="{{ old('ukuran', $inventory->ukuran) }}" placeholder="Ukuran">
+            <div class="row">
+                <label>UKURAN :</label>
+                <input type="text" name="ukuran" value="{{ old('ukuran') }}" placeholder="All Size">
+            </div>
 
-            <label for="stok">Stok:</label>
-            <input type="number" name="stok" id="stok" value="{{ old('stok', $inventory->stok) }}" placeholder="Jumlah stok">
+            <div class="row">
+                <label>STOK :</label>
+                <input type="number" name="stok" value="{{ old('stok') }}" placeholder="0">
+            </div>
 
-            <label for="masuk">Masuk:</label>
-            <input type="number" name="masuk" id="masuk" value="{{ old('masuk', $inventory->masuk) }}" placeholder="Jumlah masuk">
+            <div class="row">
+                <label>PRODUK MASUK :</label>
+                <input type="number" name="masuk" value="{{ old('masuk') }}" placeholder="0">
+            </div>
 
-            <label for="keluar">Keluar:</label>
-            <input type="number" name="keluar" id="keluar" value="{{ old('keluar', $inventory->keluar) }}" placeholder="Jumlah keluar">
+            <div class="row">
+                <label>PRODUK KELUAR :</label>
+                <input type="number" name="keluar" value="{{ old('keluar') }}" placeholder="0">
+            </div>
 
-            <label for="harga">Harga:</label>
-            <input type="number" name="harga" id="harga" value="{{ old('harga', $inventory->harga) }}" placeholder="Harga satuan">
+            <div class="row">
+                <label>HARGA PRODUK :</label>
+                <input type="number" name="harga" value="{{ old('harga') }}" placeholder="Rp">
+            </div>
 
-            <label for="keuntungan">Keuntungan:</label>
-            <input type="number" name="keuntungan" id="keuntungan" value="{{ old('keuntungan', $inventory->keuntungan) }}" placeholder="Keuntungan per item">
+            <div class="row">
+                <label>KEUNTUNGAN :</label>
+                <input type="number" name="keuntungan" value="{{ old('keuntungan') }}" placeholder="Profit per item">
+            </div>
 
-            <label for="keterangan">Keterangan:</label>
-            <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan', $inventory->keterangan) }}</textarea>
-        </div>
+            <div class="row">
+                <label>KETERANGAN :</label>
+                <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
+            </div>
 
-        <button type="submit" class="add">Update</button>
+
+      <!-- BUTTONS -->
+            <div class="btn-group">
+                <a href="{{ route('inventory.index') }}" class="btn cancel">Batal</a>
+                <button type="submit" class="btn add">Tambah</button>
+            </div>
     </form>
+
+     </section>
 </body>
 </html>

@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('assets/css/indexinv.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/indexout.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
     
-    <title>Inventory</title>
+    <title>Laba</title>
 </head>
-
 <body>
-<!-- Modal Konfirmasi -->
+  <!-- Modal Konfirmasi -->
 <div id="confirmModal" class="modal">
     <div class="modal-content">
         <p>Yakin mau hapus?</p>
@@ -20,7 +19,6 @@
         </div>
     </div>
 </div>
-
    <div class="lamierre-navbar">
     <div class="nav-left">
         <h1 class="brand">Lamierrè <span>Hijab</span></h1>
@@ -28,75 +26,54 @@
 
     <div class="nav-center">
         <div class="nav-tabs">
-            <a href="{{ route('inventory.index') }}" class="tab active">Inventory</a>
+            <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
             <a href="{{ route('output.index') }}" class="tab">On Progress</a>
-            <a href="{{ route('output.index') }}" class="tab">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab">Laba</a>
+            <a href="{{ route('done.index') }}" class="tab">Done</a>
+            <a href="{{ route('laba.index') }}" class="tab active">Laba</a>
         </div>
     </div>
 
     <div class="nav-right">
-        <h1 class="title">Inventory</h1>
+        <h1 class="title">Laba</h1>
     </div>
 </div>
 
-  
     <!-- card agenda -->
-     
     <br>
-    <a href="{{ route('inventory.index') }}" class="back">Back</a>
-    <a href="{{ route('inventory.create') }}" class="add">Add +</a>
+    <a href="{{ route('laba.index') }}" class="back">Back</a>
+    <a href="{{ route('laba.create') }}" class="add">Add +</a>
 
-    <table class="inv-table">
-    <thead>
-        <tr>
-            <th>Kode</th>
-            <th>Nama Produk</th>
-            <th>Warna</th>
-            <th>Ukuran</th>
-            <th>Stok</th>
-            <th>Masuk</th>
-            <th>Keluar</th>
-            <th>Harga</th>
-            <th>Keuntungan</th>
-            <th>Keterangan</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach($allInventory as $inv)
-        <tr>
-            <td>{{ $inv->kode }}</td>
-            <td>{{ $inv->nama }}</td>
-            <td>{{ $inv->warna }}</td>
-            <td>{{ $inv->ukuran }}</td>
-            <td>{{ $inv->stok }}</td>
-            <td>{{ $inv->masuk }}</td>
-            <td>{{ $inv->keluar }}</td>
-            <td>Rp {{ number_format($inv->harga, 0, ',', '.') }}</td>
-            <td>Rp {{ number_format($inv->keuntungan, 0, ',', '.') }}</td>
-            <td>{{ $inv->keterangan }}</td>
-
-            <td class="aksi">
-                <a href="{{ route('inventory.edit', $inv->id) }}" class="edit">Edit</a>
-
-               <form action="{{ route('inventory.destroy', $inv->id) }}" method="POST" class="delete-form">
-    @csrf
-    @method('DELETE')
-    <button type="button" class="delete btn-delete" data-id="{{ $inv->id }}">
-        Hapus
-    </button>
-</form>
-
-            </td>
-        </tr>
+    <div class="container_card">
+        @foreach($allLaba as $key => $laba)
+            <div class="card-item">
+                <h2>{{ $laba->nama }}</h2>
+                <p>{{ $laba->kode }}</p>
+                <p>{{ $laba->warna }}</p>
+                <p>{{ $laba->ukuran }}</p>
+                <p>{{ $laba->stok }}</p>
+                <p>{{ $laba->masuk }}</p>
+                <p>{{ $laba->keluar }}</p>
+                <p>{{ $laba->ukuran }}</p>
+                <p>{{ $laba->harga }}</p>
+                <p>{{ $laba->keuntungan }}</p>
+                <p>{{ $laba->keterangan }}</p>
+                <p>{{ $laba->status }}</p>
+                <p>{{ $laba->pembayaran }}</p>
+                <p>Uploaded: {{ $laba->created_at }}</p>
+                <p>Updated: {{ $laba->updated_at }}</p>
+                <form action="{{ route('laba.destroy', $laba->id) }}" method="POST">
+                    @auth
+                        <a href="{{ route('laba.edit', $laba->id) }}" class="edit">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="delete">Hapus</button>
+                    @endauth
+                </form>
+            </div>
         @endforeach
-    </tbody>
-</table>
+    </div>
 
-
-     <script>
+  <script>
         document.addEventListener('DOMContentLoaded', function() {
             const logo = document.getElementById('profileLogo');
             const dropdown = document.getElementById('profileDropdown');

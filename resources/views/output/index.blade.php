@@ -3,14 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/aspirasi.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/indexout.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
     
-    <title>Output</title>
+    <title>On Progress</title>
 </head>
 <body>
-  
+  <!-- Modal Konfirmasi -->
+<div id="confirmModal" class="modal">
+    <div class="modal-content">
+        <p>Yakin mau hapus?</p>
+        <div class="modal-buttons">
+            <button id="confirmYes" class="yes">Ya</button>
+            <button id="confirmNo" class="no">Tidak</button>
+        </div>
+    </div>
+</div>
+   <div class="lamierre-navbar">
+    <div class="nav-left">
+        <h1 class="brand">Lamierrè <span>Hijab</span></h1>
+    </div>
+
+    <div class="nav-center">
+        <div class="nav-tabs">
+            <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
+            <a href="{{ route('output.index') }}" class="tab active">On Progress</a>
+            <a href="{{ route('done.index') }}" class="tab">Done</a>
+            <a href="{{ route('laba.index') }}" class="tab">Laba</a>
+        </div>
+    </div>
+
+    <div class="nav-right">
+        <h1 class="title">Output</h1>
+    </div>
+</div>
+
     <!-- card agenda -->
     <br>
     <a href="{{ route('output.index') }}" class="back">Back</a>
@@ -20,7 +47,7 @@
         @foreach($allOutput as $key => $out)
             <div class="card-item">
                 <h2>{{ $out->nama }}</h2>
-                <p class="caption">✍️ : {{ $out->kode }}</p>
+                <p>{{ $out->kode }}</p>
                 <p>{{ $out->warna }}</p>
                 <p>{{ $out->ukuran }}</p>
                 <p>{{ $out->stok }}</p>
@@ -46,7 +73,7 @@
         @endforeach
     </div>
 
-     <script>
+   <script>
         document.addEventListener('DOMContentLoaded', function() {
             const logo = document.getElementById('profileLogo');
             const dropdown = document.getElementById('profileDropdown');
@@ -60,6 +87,23 @@
                 });
             }
         });
+         let selectedForm = null;
+
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', function() {
+            selectedForm = this.closest('form');
+            document.getElementById('confirmModal').style.display = "flex";
+        });
+    });
+
+    document.getElementById('confirmYes').addEventListener('click', function() {
+        if (selectedForm) selectedForm.submit();
+    });
+
+    document.getElementById('confirmNo').addEventListener('click', function() {
+        document.getElementById('confirmModal').style.display = "none";
+        selectedForm = null;
+    });
     </script>
 </body>
 </html>

@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Inventory - Toko Hijab Lamierre</title>
+    <title>Edit Output</title>
     <link rel="stylesheet" href="{{ asset('assets/css/createinv.css') }}">
 </head>
 <body>
-    <!-- FORM WRAPPER -->
     <section class="form-wrapper">
-
-        <h3 class="form-title">TAMBAH PRODUK</h3>
+       <h3 class="form-title">EDIT OUTPUT</h3>
 
         {{-- Error Message --}}
         @if ($errors->any())
@@ -23,10 +21,11 @@
             </div>
         @endif
 
-        <form action="{{ route('inventory.store') }}" method="POST" class="form-box">
-            @csrf
+    <form action="{{ route('output.update', $output->id) }}" method="POST" class="form-box">
+        @csrf
+        @method('PUT')
 
-            <!-- LEFT LABEL RIGHT INPUT -->
+      <!-- LEFT LABEL RIGHT INPUT -->
             <div class="row">
                 <label>KODE PRODUK :</label>
                 <input type="text" name="kode" value="{{ old('kode') }}" placeholder="HJ-01">
@@ -74,17 +73,32 @@
 
             <div class="row">
                 <label>KETERANGAN :</label>
-                <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
+                <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan', $output->keterangan) }}</textarea>
             </div>
 
-            <!-- BUTTONS -->
-            <div class="btn-group">
-                <a href="{{ route('inventory.index') }}" class="btn cancel">Batal</a>
+             <div class="row">
+                <label>STATUS :</label>
+                <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan', $output->keterangan) }}</textarea>
+            </div>
+
+             <div class="row">
+                <label>PEMBAYARAN :</label>
+                <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan', $output->keterangan) }}</textarea>
+            </div>
+
+             <div class="row">
+                <label>KETERANGAN :</label>
+                <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan', $output->keterangan) }}</textarea>
+            </div>
+
+        
+
+        <div class="btn-group">
+                <a href="{{ route('output.index') }}" class="btn cancel">Batal</a>
                 <button type="submit" class="btn add">Tambah</button>
             </div>
-        </form>
+    </form>
 
     </section>
-
 </body>
 </html>
