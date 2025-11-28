@@ -56,27 +56,56 @@ class DoneController extends Controller
         return view('done.edit', compact('done'));
     }
 
-    public function update(Request $request, Done $done)
-    {
-        $validatedData = $request->validate([
-            'kode' => 'required',
-            'nama' => 'required',
-            'warna' => 'required',
-            'ukuran' => 'required',
-            'stok' => 'required|integer',
-            'masuk' => 'required|integer',
-            'keluar' => 'required|integer',
-            'harga' => 'required|numeric',
-            'keuntungan' => 'required|numeric',
-            'keterangan' => 'required',
-            'status' => 'required',
-            'pembayaran' => 'required',
+   public function update(Request $request, $id)
+{
+    $output = Output::findOrFail($id);
+
+    $output->update($request->all());
+
+    // Jika status arrive → pindahkan ke tabel done
+    if ($request->status === "arrive") {
+
+        // Kurangi stok di Inventory
+        $inventory = Inventory::where('kode', $output->kode)->first();
+
+        if ($inventory) {
+            // Kurangi stok berdasarkan qty keluar
+            $inventory->stok = $inventory->stok - $output->keluar;
+
+            // Pastikan stok tidak minus
+            if ($inventory->stok < 0) {
+                $inventory->stok = 0;
+            }
+
+            $inventory->save();
+        }
+
+        // Buat data baru di tabel done
+        Done::create([
+            'kode' => $output->kode,
+            'nama' => $output->nama,
+            'warna' => $output->warna,
+            'ukuran' => $output->ukuran,
+            'stok' => $output->stok,
+            'masuk' => $output->masuk,
+            'keluar' => $output->keluar,
+            'harga' => $output->harga,
+            'keuntungan' => $output->keuntungan,
+            'keterangan' => $output->keterangan,
+            'status' => $output->status,
+            'pembayaran' => $output->pembayaran,
         ]);
 
-        $done->update($validatedData);
+        // Hapus data dari tabel output
+        $output->delete();
 
-        return redirect()->route('done.index')->with('success', 'Data berhasil diperbarui!');
+        return redirect()->route('done.index')
+            ->with('success', 'Data berhasil dipindahkan ke Done & stok telah diperbarui!');
     }
+
+    return redirect()->route('output.index')
+        ->with('success', 'Data berhasil diperbarui!');
+}
 
     public function destroy(Done $done)
     {

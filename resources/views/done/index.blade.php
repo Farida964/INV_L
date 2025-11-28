@@ -3,22 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ asset('assets/css/indexout.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/indexdone.css') }}">
     
     <title>Done</title>
 </head>
 <body>
-  <!-- Modal Konfirmasi -->
-<div id="confirmModal" class="modal">
-    <div class="modal-content">
-        <p>Yakin mau hapus?</p>
-        <div class="modal-buttons">
-            <button id="confirmYes" class="yes">Ya</button>
-            <button id="confirmNo" class="no">Tidak</button>
-        </div>
-    </div>
-</div>
+ 
    <div class="lamierre-navbar">
     <div class="nav-left">
         <h1 class="brand">Lamierrè <span>Hijab</span></h1>
@@ -38,26 +29,27 @@
     </div>
 </div>
 
-
+<div class="inv-container">
     @foreach($allDone as $done)
-    <div class="inv-card">
-        <div class="card-row"><span>Kode:</span> {{ $done->kode }}</div>
-        <div class="card-row"><span>Nama:</span> {{ $done->nama }}</div>
-        <div class="card-row"><span>Warna:</span> {{ $done->warna }}</div>
-        <div class="card-row"><span>Ukuran:</span> {{ $done->ukuran }}</div>
-        <div class="card-row"><span>Stok:</span> {{ $done->stok }}</div>
-        <div class="card-row"><span>Masuk:</span> {{ $done->masuk }}</div>
-        <div class="card-row"><span>Keluar:</span> {{ $done->keluar }}</div>
-        <div class="card-row"><span>Harga:</span> {{ $done->harga }}</div>
-        <div class="card-row"><span>Keuntungan:</span> {{ $done->keuntungan }}</div>
-        <div class="card-row"><span>Keterangan:</span> {{ $done->keterangan }}</div>
-        <div class="card-row"><span>Pembayaran:</span> {{ $done->pembayaran }}</div>
-        <div class="card-row"><span>Status:</span> {{ $done->status }}</div>
-        <div class="card-row"><span>Uploaded:</span> {{ $done->created_at }}</div>
-        <div class="card-row"><span>Updated:</span> {{ $done->updated_at }}</div>
-        
-    </div>
-@endforeach
+        <div class="inv-card">
+            <div class="card-row"><span>Kode:</span> {{ $done->kode }}</div>
+            <div class="card-row"><span>Nama:</span> {{ $done->nama }}</div>
+            <div class="card-row"><span>Warna:</span> {{ $done->warna }}</div>
+            <div class="card-row"><span>Ukuran:</span> {{ $done->ukuran }}</div>
+            <div class="card-row"><span>Stok:</span> {{ $done->stok }}</div>
+            <div class="card-row"><span>Masuk:</span> {{ $done->masuk }}</div>
+            <div class="card-row"><span>Keluar:</span> {{ $done->keluar }}</div>
+            <div class="card-row"><span>Harga:</span> {{ $done->harga }}</div>
+            <div class="card-row"><span>Keuntungan:</span> {{ $done->keuntungan }}</div>
+            <div class="card-row"><span>Keterangan:</span> {{ $done->keterangan }}</div>
+            <div class="card-row"><span>Pembayaran:</span> {{ $done->pembayaran }}</div>
+            <div class="card-row"><span>Status:</span> {{ $done->status }}</div>
+            <div class="card-row"><span>Uploaded:</span> {{ $done->created_at }}</div>
+            <div class="card-row"><span>Updated:</span> {{ $done->updated_at }}</div>
+        </div>
+    @endforeach
+</div>
+
 
 
   <script>

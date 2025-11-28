@@ -1,0 +1,57 @@
+
+
+.inv-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* ===== CARD STYLE ===== */
+.inv-card {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 22px;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.18);
+    border: 2px solid #ffb6d9;
+    transition: 0.3s;
+}
+
+.inv-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.25);
+}
+
+/* ===== CARD CONTENT ===== */
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.card-row span {
+    font-weight: 600;
+    color: #ff4c93;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .inv-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .inv-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inv-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
