@@ -18,7 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('inventory', InventoryController::class);
     Route::resource('output', OutputController::class);
     Route::resource('done', DoneController::class);
-    Route::resource('laba', LabaController::class);
+    
 
     // Dashboard
     Route::get('/dashboard', function () {
@@ -32,6 +32,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::patch('/output/{id}/move-to-done', [OutputController::class, 'moveToDone'])
     ->name('output.moveToDone');
+    Route::get('/laba', [LabaController::class, 'index'])->name('laba.index');
+
 
 });
 

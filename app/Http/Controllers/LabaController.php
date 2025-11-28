@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Laba;
+use App\Models\Done;
 use Illuminate\View\View;
 
 class LabaController extends Controller
@@ -13,15 +14,19 @@ class LabaController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index(): View
+    public function index()
     {
-        $allLaba = Laba::all();
-        return view('laba.index', compact('allLaba'));
-    }
+        // Ambil semua data Done
+        $data = Done::orderBy('created_at', 'asc')->get();
 
-    public function create(): View
-    {
-        return view('laba.create');
+        // Hitung total running keuntungan
+        $runningTotal = 0;
+        foreach ($data as $item) {
+            $runningTotal += $item->keuntungan;
+            $item->running_total = $runningTotal;
+        }
+
+        return view('laba.index', compact('data'));
     }
 
     public function store(Request $request)

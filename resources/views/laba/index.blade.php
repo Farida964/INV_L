@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ asset('assets/css/indexout.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
-    
     <title>Laba</title>
+
+    <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
+    <style>
+        table {
+            width: 95%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #999;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background: #eee;
+        }
+    </style>
 </head>
 <body>
-  <!-- Modal Konfirmasi -->
-<div id="confirmModal" class="modal">
-    <div class="modal-content">
-        <p>Yakin mau hapus?</p>
-        <div class="modal-buttons">
-            <button id="confirmYes" class="yes">Ya</button>
-            <button id="confirmNo" class="no">Tidak</button>
-        </div>
-    </div>
-</div>
-   <div class="lamierre-navbar">
+
+<div class="lamierre-navbar">
     <div class="nav-left">
         <h1 class="brand">Lamierrè <span>Hijab</span></h1>
     </div>
@@ -38,72 +45,35 @@
     </div>
 </div>
 
-    <!-- card agenda -->
-    <br>
-    <a href="{{ route('laba.index') }}" class="back">Back</a>
-    <a href="{{ route('laba.create') }}" class="add">Add +</a>
+<table>
+    <thead>
+        <tr>
+            <th>Tanggal</th>
+            <th>Produk</th>
+            <th>Qty</th>
+            <th>Atas Nama</th>
+            <th>Total Pembayaran</th>
+            <th>Keuntungan</th>
+            <th>Total Keuntungan</th>
+        </tr>
+    </thead>
 
-    <div class="container_card">
-        @foreach($allLaba as $key => $laba)
-            <div class="card-item">
-                <h2>{{ $laba->nama }}</h2>
-                <p>{{ $laba->kode }}</p>
-                <p>{{ $laba->warna }}</p>
-                <p>{{ $laba->ukuran }}</p>
-                <p>{{ $laba->stok }}</p>
-                <p>{{ $laba->masuk }}</p>
-                <p>{{ $laba->keluar }}</p>
-                <p>{{ $laba->ukuran }}</p>
-                <p>{{ $laba->harga }}</p>
-                <p>{{ $laba->keuntungan }}</p>
-                <p>{{ $laba->keterangan }}</p>
-                <p>{{ $laba->status }}</p>
-                <p>{{ $laba->pembayaran }}</p>
-                <p>Uploaded: {{ $laba->created_at }}</p>
-                <p>Updated: {{ $laba->updated_at }}</p>
-                <form action="{{ route('laba.destroy', $laba->id) }}" method="POST">
-                    @auth
-                        <a href="{{ route('laba.edit', $laba->id) }}" class="edit">Edit</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete">Hapus</button>
-                    @endauth
-                </form>
-            </div>
-        @endforeach
-    </div>
+    <tbody>
+@foreach($data as $item)
+    <tr>
+        <td>{{ $item->created_at->format('d-m-Y') }}</td>
+        <td>{{ $item->nama }}</td>
+        <td>{{ $item->keluar }}</td>
+        <td>{{ $item->keterangan }}</td>
 
-  <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const logo = document.getElementById('profileLogo');
-            const dropdown = document.getElementById('profileDropdown');
-            if (logo) {
-                document.addEventListener('click', function(e) {
-                    if (logo.contains(e.target)) {
-                        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-                    } else if (!dropdown.contains(e.target)) {
-                        dropdown.style.display = 'none';
-                    }
-                });
-            }
-        });
-         let selectedForm = null;
+        <td>Rp {{ number_format((int)$item->pembayaran, 0, ',', '.') }}</td>
+        <td>Rp {{ number_format((int)$item->keuntungan, 0, ',', '.') }}</td>
+        <td>Rp {{ number_format((int)$item->running_total, 0, ',', '.') }}</td>
+    </tr>
+@endforeach
+</tbody>
 
-    document.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', function() {
-            selectedForm = this.closest('form');
-            document.getElementById('confirmModal').style.display = "flex";
-        });
-    });
+</table>
 
-    document.getElementById('confirmYes').addEventListener('click', function() {
-        if (selectedForm) selectedForm.submit();
-    });
-
-    document.getElementById('confirmNo').addEventListener('click', function() {
-        document.getElementById('confirmModal').style.display = "none";
-        selectedForm = null;
-    });
-    </script>
 </body>
 </html>
