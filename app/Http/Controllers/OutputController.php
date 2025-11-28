@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Output;
+use App\Models\Done; // <-- WAJIB
 use Illuminate\View\View;
 
 class OutputController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
@@ -46,7 +47,7 @@ class OutputController extends Controller
         return redirect()->route('output.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    public function show(Inventory $inventory): View
+    public function show(Output $output): View
     {
         return view('output.show', compact('output'));
     }
@@ -56,26 +57,24 @@ class OutputController extends Controller
         return view('output.edit', compact('output'));
     }
 
-    public function update(Request $request, Output $output)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'kode' => 'required',
-            'nama' => 'required',
-            'warna' => 'required',
-            'ukuran' => 'required',
-            'stok' => 'required|integer',
-            'masuk' => 'required|integer',
-            'keluar' => 'required|integer',
-            'harga' => 'required|numeric',
-            'keuntungan' => 'required|numeric',
-            'keterangan' => 'required',
-            'status' => 'required',
-            'pembayaran' => 'required',
-        ]);
+        $output = Output::findOrFail($id);
 
-        $output->update($validatedData);
+        $output->update($request->all());
 
-        return redirect()->route('output.index')->with('success', 'Data berhasil diperbarui!');
+        if ($request->status === "arrive") {
+
+            Done::create($output->toArray());
+
+            $output->delete();
+
+            return redirect()->route('done.index')
+                ->with('success', 'Data berhasil dipindahkan ke Done!');
+        }
+
+        return redirect()->route('output.index')
+            ->with('success', 'Data berhasil diperbarui!');
     }
 
     public function destroy(Output $output)
@@ -83,5 +82,4 @@ class OutputController extends Controller
         $output->delete();
         return redirect()->route('output.index')->with('success', 'Data berhasil dihapus!');
     }
-
 }

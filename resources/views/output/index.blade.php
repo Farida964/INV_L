@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ asset('assets/css/indexout.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/indexout.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
     
     <title>On Progress</title>
 </head>
+
 <body>
-  <!-- Modal Konfirmasi -->
+
+<!-- POP UP KONFIRMASI -->
 <div id="confirmModal" class="modal">
     <div class="modal-content">
         <p>Yakin mau hapus?</p>
@@ -19,11 +21,13 @@
         </div>
     </div>
 </div>
+
    <div class="lamierre-navbar">
     <div class="nav-left">
         <h1 class="brand">Lamierrè <span>Hijab</span></h1>
     </div>
 
+<!-- MENU NAV -->
     <div class="nav-center">
         <div class="nav-tabs">
             <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
@@ -34,46 +38,53 @@
     </div>
 
     <div class="nav-right">
-        <h1 class="title">Output</h1>
+        <h1 class="title">On Progress</h1>
     </div>
 </div>
 
-    <!-- card agenda -->
+<!-- TABEL DATA -->
+     
     <br>
     <a href="{{ route('output.index') }}" class="back">Back</a>
     <a href="{{ route('output.create') }}" class="add">Add +</a>
 
-    <div class="container_card">
-        @foreach($allOutput as $key => $out)
-            <div class="card-item">
-                <h2>{{ $out->nama }}</h2>
-                <p>{{ $out->kode }}</p>
-                <p>{{ $out->warna }}</p>
-                <p>{{ $out->ukuran }}</p>
-                <p>{{ $out->stok }}</p>
-                <p>{{ $out->masuk }}</p>
-                <p>{{ $out->keluar }}</p>
-                <p>{{ $out->ukuran }}</p>
-                <p>{{ $out->harga }}</p>
-                <p>{{ $out->keuntungan }}</p>
-                <p>{{ $out->keterangan }}</p>
-                <p>{{ $out->status }}</p>
-                <p>{{ $out->pembayaran }}</p>
-                <p>Uploaded: {{ $out->created_at }}</p>
-                <p>Updated: {{ $out->updated_at }}</p>
-                <form action="{{ route('output.destroy', $out->id) }}" method="POST">
-                    @auth
-                        <a href="{{ route('output.edit', $out->id) }}" class="edit">Edit</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete">Hapus</button>
-                    @endauth
-                </form>
-            </div>
-        @endforeach
-    </div>
 
-   <script>
+    <div class="card-container">
+    @foreach($allOutput as $out)
+    <div class="inv-card">
+
+        <div class="card-row"><span>Kode:</span> {{ $out->kode }}</div>
+        <div class="card-row"><span>Nama:</span> {{ $out->nama }}</div>
+        <div class="card-row"><span>Warna:</span> {{ $out->warna }}</div>
+        <div class="card-row"><span>Ukuran:</span> {{ $out->ukuran }}</div>
+        <div class="card-row"><span>Stok:</span> {{ $out->stok }}</div>
+        <div class="card-row"><span>Masuk:</span> {{ $out->masuk }}</div>
+        <div class="card-row"><span>Keluar:</span> {{ $out->keluar }}</div>
+        <div class="card-row"><span>Harga:</span> Rp {{ number_format($out->harga, 0, ',', '.') }}</div>
+        <div class="card-row"><span>Keuntungan:</span> Rp {{ number_format($out->keuntungan, 0, ',', '.') }}</div>
+        <div class="card-row"><span>Keterangan:</span> {{ $out->keterangan }}</div>
+        <div class="card-row"><span>Status:</span> {{ $out->status }}</div>
+        <div class="card-row"><span>Pembayaran:</span> {{ $out->pembayaran }}</div>
+
+        <div class="card-actions">
+            <a href="{{ route('output.edit', $out->id) }}" class="edit">Edit</a>
+
+            <form action="{{ route('output.destroy', $out->id) }}" method="POST" class="delete-form">
+                @csrf
+                @method('DELETE')
+                <button type="button" class="delete btn-delete" data-id="{{ $out->id }}">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+
+
+
+     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const logo = document.getElementById('profileLogo');
             const dropdown = document.getElementById('profileDropdown');

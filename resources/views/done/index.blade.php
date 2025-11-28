@@ -38,40 +38,27 @@
     </div>
 </div>
 
-    <!-- card agenda -->
-    <br>
-    <a href="{{ route('done.index') }}" class="back">Back</a>
-    <a href="{{ route('done.create') }}" class="add">Add +</a>
 
-    <div class="container_card">
-        @foreach($allDone as $key => $out)
-            <div class="card-item">
-                <h2>{{ $out->nama }}</h2>
-                <p>{{ $out->kode }}</p>
-                <p>{{ $out->warna }}</p>
-                <p>{{ $out->ukuran }}</p>
-                <p>{{ $out->stok }}</p>
-                <p>{{ $out->masuk }}</p>
-                <p>{{ $out->keluar }}</p>
-                <p>{{ $out->ukuran }}</p>
-                <p>{{ $out->harga }}</p>
-                <p>{{ $out->keuntungan }}</p>
-                <p>{{ $out->keterangan }}</p>
-                <p>{{ $out->status }}</p>
-                <p>{{ $out->pembayaran }}</p>
-                <p>Uploaded: {{ $out->created_at }}</p>
-                <p>Updated: {{ $out->updated_at }}</p>
-                <form action="{{ route('done.destroy', $out->id) }}" method="POST">
-                    @auth
-                        <a href="{{ route('done.edit', $out->id) }}" class="edit">Edit</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete">Hapus</button>
-                    @endauth
-                </form>
-            </div>
-        @endforeach
+    @foreach($allDone as $done)
+    <div class="inv-card">
+        <div class="card-row"><span>Kode:</span> {{ $done->kode }}</div>
+        <div class="card-row"><span>Nama:</span> {{ $done->nama }}</div>
+        <div class="card-row"><span>Warna:</span> {{ $done->warna }}</div>
+        <div class="card-row"><span>Ukuran:</span> {{ $done->ukuran }}</div>
+        <div class="card-row"><span>Stok:</span> {{ $done->stok }}</div>
+        <div class="card-row"><span>Masuk:</span> {{ $done->masuk }}</div>
+        <div class="card-row"><span>Keluar:</span> {{ $done->keluar }}</div>
+        <div class="card-row"><span>Harga:</span> {{ $done->harga }}</div>
+        <div class="card-row"><span>Keuntungan:</span> {{ $done->keuntungan }}</div>
+        <div class="card-row"><span>Keterangan:</span> {{ $done->keterangan }}</div>
+        <div class="card-row"><span>Pembayaran:</span> {{ $done->pembayaran }}</div>
+        <div class="card-row"><span>Status:</span> {{ $done->status }}</div>
+        <div class="card-row"><span>Uploaded:</span> {{ $done->created_at }}</div>
+        <div class="card-row"><span>Updated:</span> {{ $done->updated_at }}</div>
+        
     </div>
+@endforeach
+
 
   <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -3,85 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Inventory</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/createout.css') }}">
+    <title>Data Output</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/createinv.css') }}">
 </head>
 <body>
+    <!-- FORM WRAPPER -->
+    <section class="form-wrapper">
 
-  <h3>Form Output Data Inventory</h3>
+        <h3 class="form-title">PRODUK ON PROGRESS</h3>
 
-  {{-- Tampilkan pesan error jika ada --}}
-  @if ($errors->any())
-      <div style="color:red;">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-  @endif
-   <a href="{{ route('output.index') }}" class="back">Back</a>
+        {{-- Error Message --}}
+        @if ($errors->any())
+            <div class="error-box">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-  <form action="{{ route('output.store') }}" method="POST">
-      @csrf
-      <div class="form_agd">
+        <form action="{{ route('output.store') }}" method="POST" class="form-box">
+            @csrf
 
-          <label for="kode">Kode:</label>
-          <input type="text" name="kode" id="kode" value="{{ old('kode') }}" placeholder="Masukkan kode">
+            <!-- LEFT LABEL RIGHT INPUT -->
+            <div class="row">
+                <label>KODE PRODUK :</label>
+                <input type="text" name="kode" value="{{ old('kode') }}" placeholder="HJ-01">
+            </div>
 
-          <label for="nama">Nama:</label>
-          <input type="text" name="nama" id="nama" value="{{ old('nama') }}" placeholder="Nama barang">
+            <div class="row">
+                <label>NAMA PRODUK :</label>
+                <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Pashmina Ceruty">
+            </div>
 
-          <label for="warna">Warna:</label>
-          <input type="text" name="warna" id="warna" value="{{ old('warna') }}" placeholder="Warna">
+            <div class="row">
+                <label>WARNA :</label>
+                <input type="text" name="warna" value="{{ old('warna') }}" placeholder="Dusty Pink">
+            </div>
 
-          <label for="ukuran">Ukuran:</label>
-          <input type="text" name="ukuran" id="ukuran" value="{{ old('ukuran') }}" placeholder="Ukuran">
+            <div class="row">
+                <label>UKURAN :</label>
+                <input type="text" name="ukuran" value="{{ old('ukuran') }}" placeholder="All Size">
+            </div>
 
-          <label for="stok">Stok:</label>
-          <input type="number" name="stok" id="stok" value="{{ old('stok') }}" placeholder="Jumlah stok">
+            <div class="row">
+                <label>STOK :</label>
+                <input type="number" name="stok" value="{{ old('stok') }}" placeholder="0">
+            </div>
 
-          <label for="masuk">Masuk:</label>
-          <input type="number" name="masuk" id="masuk" value="{{ old('masuk') }}" placeholder="Jumlah masuk">
+            <div class="row">
+                <label>PRODUK MASUK :</label>
+                <input type="number" name="masuk" value="{{ old('masuk') }}" placeholder="0">
+            </div>
 
-          <label for="keluar">Keluar:</label>
-          <input type="number" name="keluar" id="keluar" value="{{ old('keluar') }}" placeholder="Jumlah keluar">
+            <div class="row">
+                <label>PRODUK KELUAR :</label>
+                <input type="number" name="keluar" value="{{ old('keluar') }}" placeholder="0">
+            </div>
 
-          <label for="harga">Harga:</label>
-          <input type="number" name="harga" id="harga" value="{{ old('harga') }}" placeholder="Harga satuan">
+            <div class="row">
+                <label>HARGA PRODUK :</label>
+                <input type="number" name="harga" value="{{ old('harga') }}" placeholder="Rp">
+            </div>
 
-          <label for="keuntungan">Keuntungan:</label>
-          <input type="number" name="keuntungan" id="keuntungan" value="{{ old('keuntungan') }}" placeholder="Keuntungan per item">
+            <div class="row">
+                <label>KEUNTUNGAN :</label>
+                <input type="number" name="keuntungan" value="{{ old('keuntungan') }}" placeholder="Profit per item">
+            </div>
 
-          <label for="keterangan">Keterangan:</label>
-          <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
+            <div class="row">
+                <label>KETERANGAN :</label>
+                <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
+            </div>
 
-          <label for="status">Status:</label>
-          <select name="status" id="status">
-              <option value="">Pilih status</option>
-              <option value="list" {{ old('status') == 'List' ? 'selected' : '' }}>List</option>
-              <option value="packing" {{ old('status') == 'Packing' ? 'selected' : '' }}>Packing</option>
-              <option value="delivering" {{ old('status') == 'Delivering' ? 'selected' : '' }}>Delivering</option>
-              <option value="arrive" {{ old('status') == 'Arrive' ? 'selected' : '' }}>Arrive</option>
+            <div class="row">
+                <label>STATUS :</label>
+                <select name="status" id="status">{{ old('status') }}
+
+                <option value="">Pilih status</option>
+                <option value="list" {{ old('status') == 'List' ? 'selected' : '' }}>List</option>
+                <option value="packing" {{ old('status') == 'Packing' ? 'selected' : '' }}>Packing</option>
+                <option option value="delivering" {{ old('status') == 'Delivering' ? 'selected' : '' }}>Delivering</option>
+                <option value="arrive" {{ old('status') == 'Arrive' ? 'selected' : '' }}>Arrive</option>
+
+                </select>
+        
+            </div>
+
+            <div class="row">
+                <label>PEMBAYARAN :</label>
+                 <select name="pembayaran" id="pembayaran">
+                
+                <option value="">Pilih pembayaran</option> {{ old('pembayaran') }}
+                <option value="tunai" {{ old('pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
+                <option value="cod" {{ old('pembayaran') == 'cod' ? 'selected' : '' }}>COD</option>
+                <option value="transfer" {{ old('pembayaran') == 'transfer' ? 'selected' : '' }}>Transfer</option>
+
           </select>
+        
+            </div>
 
-          <label for="pembayaran">Pembayaran:</label>
-          <select name="pembayaran" id="pembayaran">
-              <option value="">Pilih pembayaran</option>
-              <option value="tunai" {{ old('pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
-              <option value="cod" {{ old('pembayaran') == 'cod' ? 'selected' : '' }}>COD</option>
-              <option value="transfer" {{ old('pembayaran') == 'transfer' ? 'selected' : '' }}>Transfer</option>
-          </select>
-          
-
-      </div>
-
-      <!-- BUTTONS -->
+            <!-- BUTTONS -->
             <div class="btn-group">
-                <a href="{{ route('inventory.index') }}" class="btn cancel">Batal</a>
+                <a href="{{ route('output.index') }}" class="btn cancel">Batal</a>
                 <button type="submit" class="btn add">Tambah</button>
             </div>
-  </form>
+        </form>
+
+    </section>
 
 </body>
 </html>
+
+
+

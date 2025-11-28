@@ -1,6 +1,5 @@
-/* ------------------------ */
-/* TABLE STYLE */
-/* ------------------------ */
+/* TABEL */
+
 .inv-table {
     width: 95%;
     margin: 30px auto;
@@ -37,10 +36,8 @@
     transition: 0.2s;
 }
 
+/* BUTTON */
 
-/* ------------------------ */
-/* BUTTON STYLE */
-/* ------------------------ */
 .edit {
     background: #7db4ff;
     color: white;

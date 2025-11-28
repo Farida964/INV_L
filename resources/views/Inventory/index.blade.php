@@ -10,7 +10,8 @@
 </head>
 
 <body>
-<!-- Modal Konfirmasi -->
+
+<!-- POP UP KONFIRMASI -->
 <div id="confirmModal" class="modal">
     <div class="modal-content">
         <p>Yakin mau hapus?</p>
@@ -26,6 +27,7 @@
         <h1 class="brand">Lamierrè <span>Hijab</span></h1>
     </div>
 
+<!-- MENU NAV -->
     <div class="nav-center">
         <div class="nav-tabs">
             <a href="{{ route('inventory.index') }}" class="tab active">Inventory</a>
@@ -40,8 +42,7 @@
     </div>
 </div>
 
-  
-    <!-- card agenda -->
+<!-- TABEL DATA -->
      
     <br>
     <a href="{{ route('inventory.index') }}" class="back">Back</a>
