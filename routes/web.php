@@ -6,33 +6,42 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\OutputController;
 use App\Http\Controllers\DoneController;
 use App\Http\Controllers\LabaController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('welcome');
+// Root route redirect ke inventory jika login, atau ke login jika belum
+Route::get('/', function() {
+    return auth()->check() ? redirect('/inventory') : redirect('/login');
 });
+
+// Halaman dashboard redirect ke inventory
+Route::get('/dashboard', function() {
+    return redirect('/inventory');
+})->middleware('auth')->name('dashboard');
+
+
 
 // Semua rute berikut hanya bisa diakses jika user sudah login & terverifikasi
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    // Resource routes untuk Inventory
+    // Resource routes untuk Inventory, Output, Done
     Route::resource('inventory', InventoryController::class);
     Route::resource('output', OutputController::class);
     Route::resource('done', DoneController::class);
-    
-
-    // Dashboard
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
     // Profile edit/update/delete
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Move output to done
     Route::patch('/output/{id}/move-to-done', [OutputController::class, 'moveToDone'])
-    ->name('output.moveToDone');
+        ->name('output.moveToDone');
+    
+    // Laba page
     Route::get('/laba', [LabaController::class, 'index'])->name('laba.index');
+
+    // logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 });

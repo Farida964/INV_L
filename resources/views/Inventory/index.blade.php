@@ -34,6 +34,7 @@
             <a href="{{ route('output.index') }}" class="tab">On Progress</a>
             <a href="{{ route('output.index') }}" class="tab">Done</a>
             <a href="{{ route('laba.index') }}" class="tab">Laba</a>
+            <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
         </div>
     </div>
 
@@ -41,6 +42,22 @@
         <h1 class="title">Inventory</h1>
     </div>
 </div>
+
+<!-- popup logout -->
+ <div id="logoutPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-box">
+        <p>Apakah Anda yakin ingin logout?</p>
+
+        <div class="popup-buttons">
+            <button onclick="confirmLogout()">Yakin</button>
+            <button onclick="closeLogoutPopup()">Tidak</button>
+        </div>
+    </div>
+</div>
+
+<form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display:none;">
+    @csrf
+</form>
 
 <!-- TABEL DATA -->
      
@@ -128,6 +145,29 @@
         document.getElementById('confirmModal').style.display = "none";
         selectedForm = null;
     });
+
+    document.getElementById('confirmYes').addEventListener('click', function() {
+        if (selectedForm) selectedForm.submit();
+    });
+
+    document.getElementById('confirmNo').addEventListener('click', function() {
+        document.getElementById('confirmModal').style.display = "none";
+        selectedForm = null;
+    });
+
+      function showLogoutPopup() {
+        document.getElementById("logoutPopup").style.display = "flex";
+    }
+
+    function closeLogoutPopup() {
+        document.getElementById("logoutPopup").style.display = "none";
+    }
+
+    function confirmLogout() {
+        document.getElementById("logoutForm").submit();
+    }
+
+
     </script>
 </body>
 </html>
