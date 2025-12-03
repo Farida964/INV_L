@@ -31,26 +31,26 @@
     <div class="nav-center">
         <div class="nav-tabs">
             <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
-            <a href="{{ route('output.index') }}" class="tab active">On Progress</a>
+            <a href="{{ route('output.index') }}" class="tab active">Checkout</a>
             <a href="{{ route('done.index') }}" class="tab">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab">Laba</a>
+            <a href="{{ route('laba.index') }}" class="tab">Profit</a>
              <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
         </div>
     </div>
 
     <div class="nav-right">
-        <h1 class="title">On Progress</h1>
+        <h1 class="title">Checkout</h1>
     </div>
 </div>
 
 <!-- popup logout -->
  <div id="logoutPopup" class="popup-overlay" style="display:none;">
     <div class="popup-box">
-        <p>Apakah Anda yakin ingin logout?</p>
+        <p>Are you sure you want to log out?</p>
 
         <div class="popup-buttons">
-            <button onclick="confirmLogout()">Yakin</button>
-            <button onclick="closeLogoutPopup()">Tidak</button>
+            <button onclick="confirmLogout()" class="yes">Yes</button>
+            <button onclick="closeLogoutPopup()" class="no">No</button>
         </div>
     </div>
 </div>
@@ -63,7 +63,6 @@
 <!-- TABEL DATA -->
      
     <br>
-    <a href="{{ route('output.index') }}" class="back">Back</a>
     <a href="{{ route('output.create') }}" class="add">Add +</a>
 
 
@@ -90,7 +89,7 @@
             <form action="{{ route('output.destroy', $out->id) }}" method="POST" class="delete-form">
                 @csrf
                 @method('DELETE')
-                <button type="button" class="delete btn-delete" data-id="{{ $out->id }}">
+                <button type="button" class="delete" data-id="{{ $out->id }}" >
                     Hapus
                 </button>
             </form>

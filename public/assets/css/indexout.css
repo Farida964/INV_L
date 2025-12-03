@@ -1,86 +1,87 @@
-/* === CARD LAYOUT === */
+/* ===== CARD GRID ===== */
 .card-container {
-    width: 95%;
-    margin: 20px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 25px;
 }
 
+/* ===== CARD ===== */
 .inv-card {
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-    border: 1px solid #e7dede;
-    transition: 0.2s;
+    background: #f3d6d1;
+    border: 2px solid #ffbcd9;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(255, 185, 216, 0.25);
+    color: #4a3d42;
+    font-size: 15px;
 }
 
-.inv-card:hover {
-    background: #faece8;
-    transform: translateY(-3px);
-}
-
-/* isi card */
+/* ===== ROW ===== */
 .card-row {
-    margin-bottom: 6px;
-    font-size: 14px;
     display: flex;
     justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dotted #ffbcd9;
 }
 
+/* Label */
 .card-row span {
-    font-weight: 600;
+    font-weight: bold;
+    color: #4a3d42;
 }
 
-/* ACTION BUTTONS */
+/* ===== ACTIONS (Edit + Delete) ===== */
 .card-actions {
-    margin-top: 15px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    margin-top: 18px;
 }
 
-
-
-/* BUTTON */
-
-.edit {
-    background: #7db4ff;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.delete {
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 8px;
+.card-actions a.edit,
+.card-actions button.delete {
+    padding: 8px 16px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 13px;
-    margin-top: 5px;
+    border: none;
+    transition: 0.25s;
 }
 
-.add, .back {
+/* Edit */
+.card-actions a.edit {
+    background: #ff9fca;
+    border: 2px solid #ec9485;
+    color: #4a3d42;
+    text-decoration: none;
+}
+.card-actions a.edit:hover {
+    background: #ff85be;
+}
+
+/* Delete */
+.card-actions button.delete {
+    background: #ff6b8a;
+    border: 2px solid #ec9485;
+    color: #4a3d42;
+}
+.card-actions button.delete:hover {
+    background: #ff5275;
+}
+
+
+.add {
     padding: 10px 18px;
-    border-radius: 8px;
+    border-radius: 20px;
     text-decoration: none;
     font-weight: 600;
     margin-left: 20px;
-}
-
-.add {
-    background: #8ed88c;
-    color: white;
-}
-
-.back {
-    background: #ff6b6b;
-    color: white;
+    border: 2px solid #000; 
+    cursor: pointer;
+    display: inline-block;
+    background: #db8675;
+    color: #4a3d42;
 }
 
 
@@ -111,7 +112,7 @@
 
 .yes {
     background: red;
-    color: white;
+    color: #4a3d42;
     padding: 8px 15px;
     border-radius: 5px;
     border: none;
@@ -120,9 +121,17 @@
 
 .no {
     background: gray;
-    color: white;
+    color: #4a3d42;
     padding: 8px 15px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+}
+
+
+/* Responsive */
+@media (max-width: 500px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
 }

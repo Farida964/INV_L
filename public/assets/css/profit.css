@@ -1,0 +1,69 @@
+/* ===== TABEL WRAPPER ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background: #fff8fc; /* soft pink latte */
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(255, 182, 212, 0.25);
+}
+
+/* ===== HEADER ===== */
+table thead {
+    background: #db8675; /* pink latte lembut */
+}
+
+table thead th {
+    padding: 14px 10px;
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* ===== BODY ===== */
+table tbody tr {
+    background: #fff;
+    transition: 0.2s ease;
+}
+
+/* baris selang-seling (zebra) */
+table tbody tr:nth-child(even) {
+    background: #e0c5c0;
+}
+
+table tbody td {
+    padding: 12px 10px;
+    font-size: 14px;
+    color: #5a4a52;
+    border-bottom: 1px solid #e0c5c0; /* soft border */
+    text-align: center;
+}
+
+/* baris terakhir tanpa border */
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== HOVER ===== */
+table tbody tr:hover {
+    background: #ffe2dd !important;
+    cursor: pointer;
+}
+
+/* ===== RESPONSIVE SCROLL ===== */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table thead th,
+    table tbody td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+}

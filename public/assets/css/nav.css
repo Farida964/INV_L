@@ -39,7 +39,7 @@
 
 .nav-tabs .tab:hover,
 .nav-tabs .tab.active {
-    background-color: #e11b81;
+    background-color: #db8675;
     color: #ffffff;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .popup-box {
-    background: white;
+    background: rgb(232, 195, 195);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -73,8 +73,22 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-.popup-buttons button {
+
+.popup-buttons .yes,
+.popup-buttons .no {
     margin: 8px;
     padding: 6px 15px;
     cursor: pointer;
+    border: 2px solid #000; /* border hitam */
+    border-radius: 20px;
+    color: #1f1f1f;
+}
+
+/* Warna background masing-masing tombol */
+.popup-buttons .yes {
+    background-color: #e11b81;
+}
+
+.popup-buttons .no {
+    background-color: #70dc4f;
 }

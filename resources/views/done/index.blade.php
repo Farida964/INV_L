@@ -18,9 +18,9 @@
     <div class="nav-center">
         <div class="nav-tabs">
             <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
-            <a href="{{ route('output.index') }}" class="tab">On Progress</a>
+            <a href="{{ route('output.index') }}" class="tab">Checkout</a>
             <a href="{{ route('done.index') }}" class="tab active">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab">Laba</a>
+            <a href="{{ route('laba.index') }}" class="tab">Profit</a>
            <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
         </div>
     </div>
@@ -33,11 +33,11 @@
 <!-- popup logout -->
  <div id="logoutPopup" class="popup-overlay" style="display:none;">
     <div class="popup-box">
-        <p>Apakah Anda yakin ingin logout?</p>
+        <p>Are you sure you want to log out?</p>
 
         <div class="popup-buttons">
-            <button onclick="confirmLogout()">Yakin</button>
-            <button onclick="closeLogoutPopup()">Tidak</button>
+            <button onclick="confirmLogout()" class="yes">Yes</button>
+            <button onclick="closeLogoutPopup()" class="no">No</button>
         </div>
     </div>
 </div>

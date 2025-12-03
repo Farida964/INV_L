@@ -4,18 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lamierre</title>
+    <title>Lamierre Inventory Gate</title>
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
 </head>
 <body>
     <div class="container">
-        <div class="left">
-        </div>
-        <div class="right">
+        <div class="box">
             <div class="login-box">
                 <h3>Login</h3>
                 <div class="desc">
-                    <b>News-F!</b> Log in to your account now and get accurate information — you can also share useful and factual information.
+                    <b>Lamierrè</b> Manage your inventory, stay focused and keep the spirit up.
                 </div>
                 @if(session('error'))
                     <div class="error">{{ session('error') }}</div>

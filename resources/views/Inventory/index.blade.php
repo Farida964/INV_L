@@ -27,13 +27,29 @@
         <h1 class="brand">Lamierrè <span>Hijab</span></h1>
     </div>
 
+<!-- popup logout -->
+ <div id="logoutPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-box">
+        <p>Are you sure you want to log out?</p>
+
+        <div class="popup-buttons">
+            <button onclick="confirmLogout()" class="yes">Yes</button>
+            <button onclick="closeLogoutPopup()" class="no">No</button>
+        </div>
+    </div>
+</div>
+
+<form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display:none;">
+    @csrf
+</form>
+
 <!-- MENU NAV -->
     <div class="nav-center">
         <div class="nav-tabs">
             <a href="{{ route('inventory.index') }}" class="tab active">Inventory</a>
-            <a href="{{ route('output.index') }}" class="tab">On Progress</a>
+            <a href="{{ route('output.index') }}" class="tab">Checkout</a>
             <a href="{{ route('output.index') }}" class="tab">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab">Laba</a>
+            <a href="{{ route('laba.index') }}" class="tab">Profit</a>
             <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
         </div>
     </div>
@@ -43,26 +59,11 @@
     </div>
 </div>
 
-<!-- popup logout -->
- <div id="logoutPopup" class="popup-overlay" style="display:none;">
-    <div class="popup-box">
-        <p>Apakah Anda yakin ingin logout?</p>
 
-        <div class="popup-buttons">
-            <button onclick="confirmLogout()">Yakin</button>
-            <button onclick="closeLogoutPopup()">Tidak</button>
-        </div>
-    </div>
-</div>
-
-<form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display:none;">
-    @csrf
-</form>
 
 <!-- TABEL DATA -->
      
     <br>
-    <a href="{{ route('inventory.index') }}" class="back">Back</a>
     <a href="{{ route('inventory.create') }}" class="add">Add +</a>
 
     <table class="inv-table">

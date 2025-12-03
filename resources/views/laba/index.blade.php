@@ -6,23 +6,7 @@
     <title>Laba</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
-    <style>
-        table {
-            width: 95%;
-            margin: 30px auto;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #999;
-        }
-        th, td {
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background: #eee;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/profit.css') }}">
 </head>
 <body>
 
@@ -31,14 +15,14 @@
         <h1 class="brand">Lamierrè <span>Hijab</span></h1>
     </div>
 
-    <!-- popup logout -->
+   <!-- popup logout -->
  <div id="logoutPopup" class="popup-overlay" style="display:none;">
     <div class="popup-box">
-        <p>Apakah Anda yakin ingin logout?</p>
+        <p>Are you sure you want to log out?</p>
 
         <div class="popup-buttons">
-            <button onclick="confirmLogout()">Yakin</button>
-            <button onclick="closeLogoutPopup()">Tidak</button>
+            <button onclick="confirmLogout()" class="yes">Yes</button>
+            <button onclick="closeLogoutPopup()" class="no">No</button>
         </div>
     </div>
 </div>
@@ -50,15 +34,15 @@
     <div class="nav-center">
         <div class="nav-tabs">
             <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
-            <a href="{{ route('output.index') }}" class="tab">On Progress</a>
+            <a href="{{ route('output.index') }}" class="tab">Checkout</a>
             <a href="{{ route('done.index') }}" class="tab">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab active">Laba</a>
+            <a href="{{ route('laba.index') }}" class="tab active">Profit</a>
              <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
         </div>
     </div>
 
     <div class="nav-right">
-        <h1 class="title">Laba</h1>
+        <h1 class="title">Profit</h1>
     </div>
 </div>
 

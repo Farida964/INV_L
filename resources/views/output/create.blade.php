@@ -79,7 +79,7 @@
 
             <div class="row">
                 <label>STATUS :</label>
-                <select name="status" id="status">{{ old('status') }}
+                <select name="status" id="status" class="status">{{ old('status') }}
 
                 <option value="">Pilih status</option>
                 <option value="list" {{ old('status') == 'List' ? 'selected' : '' }}>List</option>
@@ -95,7 +95,7 @@
                 <label>PEMBAYARAN :</label>
                  <select name="pembayaran" id="pembayaran">
                 
-                <option value="">Pilih pembayaran</option> {{ old('pembayaran') }}
+                <option value="" class="pembayaran">Pilih pembayaran</option> {{ old('pembayaran') }}
                 <option value="tunai" {{ old('pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
                 <option value="cod" {{ old('pembayaran') == 'cod' ? 'selected' : '' }}>COD</option>
                 <option value="transfer" {{ old('pembayaran') == 'transfer' ? 'selected' : '' }}>Transfer</option>

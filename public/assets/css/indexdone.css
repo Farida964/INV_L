@@ -1,57 +1,67 @@
-
-
+/* ===== CONTAINER ===== */
 .inv-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* maksimal 4 card per baris */
     gap: 25px;
-    margin-top: 20px;
+    margin-top: 25px;
+    padding: 10px;
 }
 
-/* ===== CARD STYLE ===== */
+/* Responsive */
+@media (max-width: 1200px) {
+    .inv-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .inv-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .inv-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== CARD ===== */
 .inv-card {
-    background: #ffffff;
-    border-radius: 30px;
-    padding: 22px;
-    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.18);
-    border: 2px solid #ffb6d9;
-    transition: 0.3s;
+    background: #f3d6d1;
+    border-radius: 24px;
+    padding: 20px 22px;
+    border: 2px solid #ec9485;
+    box-shadow: 0 4px 12px rgba(255, 182, 212, 0.22);
+    transition: 0.2s ease;
 }
 
+/* tetap tanpa hover */
 .inv-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.25);
+    transform: none;
 }
 
-/* ===== CARD CONTENT ===== */
+/* ===== CARD ROW (Label : Value) ===== */
 .card-row {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 10px;
     font-size: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #ffd6e9;
 }
 
 .card-row span {
     font-weight: 600;
-    color: #ff4c93;
+    color: #352022;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-    .inv-container {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
+/* Value style */
+.card-row {
+    color: #4a3d42; 
 }
 
-@media (max-width: 768px) {
-    .inv-container {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .inv-container {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
+.card-row:last-child {
+    border-bottom: none; /* baris terakhir tanpa garis */
 }
