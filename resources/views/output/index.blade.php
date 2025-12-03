@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('assets/css/indexout.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/indexinv.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
     
     <title>On Progress</title>
@@ -101,11 +102,12 @@
 
 
 
-     <script>
+    <script>
+        // Profile dropdown (optional)
         document.addEventListener('DOMContentLoaded', function() {
             const logo = document.getElementById('profileLogo');
             const dropdown = document.getElementById('profileDropdown');
-            if (logo) {
+            if (logo && dropdown) {
                 document.addEventListener('click', function(e) {
                     if (logo.contains(e.target)) {
                         dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -114,46 +116,40 @@
                     }
                 });
             }
+
+            // Logout popup handlers
+            const logoutForm = document.getElementById('logoutForm');
+            window.showLogoutPopup = function() { document.getElementById('logoutPopup').style.display = 'flex'; };
+            window.closeLogoutPopup = function() { document.getElementById('logoutPopup').style.display = 'none'; };
+            window.confirmLogout = function() { if (logoutForm) logoutForm.submit(); };
+
+            // Confirm-delete modal logic
+            let selectedForm = null;
+            const confirmModal = document.getElementById('confirmModal');
+            const confirmYes = document.getElementById('confirmYes');
+            const confirmNo = document.getElementById('confirmNo');
+
+            // Attach click listeners to all delete buttons (class 'delete')
+            document.querySelectorAll('.delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    selectedForm = this.closest('form');
+                    if (confirmModal) confirmModal.style.display = 'flex';
+                });
+            });
+
+            if (confirmYes) {
+                confirmYes.addEventListener('click', function() {
+                    if (selectedForm) selectedForm.submit();
+                });
+            }
+
+            if (confirmNo) {
+                confirmNo.addEventListener('click', function() {
+                    if (confirmModal) confirmModal.style.display = 'none';
+                    selectedForm = null;
+                });
+            }
         });
-         let selectedForm = null;
-
-    document.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', function() {
-            selectedForm = this.closest('form');
-            document.getElementById('confirmModal').style.display = "flex";
-        });
-    });
-
-    document.getElementById('confirmYes').addEventListener('click', function() {
-        if (selectedForm) selectedForm.submit();
-    });
-
-    document.getElementById('confirmNo').addEventListener('click', function() {
-        document.getElementById('confirmModal').style.display = "none";
-        selectedForm = null;
-    });
-
-    document.getElementById('confirmYes').addEventListener('click', function() {
-        if (selectedForm) selectedForm.submit();
-    });
-
-    document.getElementById('confirmNo').addEventListener('click', function() {
-        document.getElementById('confirmModal').style.display = "none";
-        selectedForm = null;
-    });
-
-      function showLogoutPopup() {
-        document.getElementById("logoutPopup").style.display = "flex";
-    }
-
-    function closeLogoutPopup() {
-        document.getElementById("logoutPopup").style.display = "none";
-    }
-
-    function confirmLogout() {
-        document.getElementById("logoutForm").submit();
-    }
-
     </script>
 </body>
 </html>
