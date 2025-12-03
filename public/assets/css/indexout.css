@@ -9,7 +9,7 @@
 /* ===== CARD ===== */
 .inv-card {
     background: #f3d6d1;
-    border: 2px solid #ffbcd9;
+    border: 2px solid #ec9485;
     border-radius: 25px;
     padding: 25px;
     box-shadow: 0 4px 10px rgba(255, 185, 216, 0.25);
@@ -22,7 +22,7 @@
     display: flex;
     justify-content: space-between;
     padding: 6px 0;
-    border-bottom: 1px dotted #ffbcd9;
+    border-bottom: 1px dotted #f3d6d1;
 }
 
 /* Label */
@@ -31,7 +31,6 @@
     color: #4a3d42;
 }
 
-/* ===== ACTIONS (Edit + Delete) ===== */
 .card-actions {
     display: flex;
     justify-content: space-between;
@@ -51,20 +50,18 @@
 
 /* Edit */
 .card-actions a.edit {
-    background: #ff9fca;
-    border: 2px solid #ec9485;
-    color: #4a3d42;
+    background: #db8675;
+    border: 1px solid #000;
+    color: white;
     text-decoration: none;
 }
-.card-actions a.edit:hover {
-    background: #ff85be;
-}
+
 
 /* Delete */
 .card-actions button.delete {
     background: #ff6b8a;
-    border: 2px solid #ec9485;
-    color: #4a3d42;
+    border: 1px solid #000;
+    color: white;
 }
 .card-actions button.delete:hover {
     background: #ff5275;
@@ -81,7 +78,7 @@
     cursor: pointer;
     display: inline-block;
     background: #db8675;
-    color: #4a3d42;
+    color: white;
 }
 
 

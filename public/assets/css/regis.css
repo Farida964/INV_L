@@ -1,0 +1,129 @@
+/* ===== Global Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ===== Body: FULL CENTER ===== */
+body {
+    background: #fbeff4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ===== Wrapper ===== */
+.container {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* ===== Card ===== */
+.box {
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px 35px;
+    border: 1px solid #f4d7de;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.35s ease-in-out;
+}
+
+/* ===== Title ===== */
+.login-box h3 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 26px;
+    color: #d16c86;
+}
+
+/* ===== Description ===== */
+.desc {
+    text-align: center;
+    font-size: 14px;
+    color: #8a5061;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* ===== Form ===== */
+label {
+    font-weight: 500;
+    font-size: 14px;
+    color: #703c4a;
+}
+
+input {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 6px 0 15px 0;
+    border: 1px solid #e4b7c7;
+    border-radius: 10px;
+    background: #fff7fa;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #d16c86;
+    box-shadow: 0 0 5px rgba(209, 108, 134, 0.3);
+}
+
+/* ===== Button Section ===== */
+.button_card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.notif {
+    font-size: 13px;
+    color: #d16c86;
+    text-decoration: none;
+}
+.notif:hover {
+    text-decoration: underline;
+}
+
+.button {
+    background: #d16c86;
+    border: none;
+    padding: 10px 22px;
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.button:hover {
+    background: #b85a73;
+}
+
+/* ===== Error Message ===== */
+.message, .error {
+    font-size: 13px;
+    color: #a02540;
+}
+
+/* ===== Fade In ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+    .box {
+        padding: 25px;
+    }
+    .login-box h3 {
+        font-size: 22px;
+    }
+}
