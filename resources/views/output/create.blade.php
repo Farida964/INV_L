@@ -30,36 +30,56 @@
             <div class="row">
                 <label>KODE PRODUK :</label>
                 <input type="text" name="kode" value="{{ old('kode') }}" placeholder="HJ-01">
+                <select name="kode">
+        <option value="">-- pilih kode --</option>
+        @foreach ($inventory as $item)
+            <option value="{{ $item->kode }}">{{ $item->kode }}</option>
+        @endforeach
+    </select>
             </div>
 
             <div class="row">
                 <label>NAMA PRODUK :</label>
                 <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Pashmina Ceruty">
+                 <select name="nama">
+        <option value="">-- pilih nama produk --</option>
+        @foreach ($inventory as $item)
+            <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+        @endforeach
+    </select>
             </div>
 
             <div class="row">
                 <label>WARNA :</label>
                 <input type="text" name="warna" value="{{ old('warna') }}" placeholder="Dusty Pink">
+                  <select name="warna">
+        <option value="">-- pilih warna --</option>
+        @foreach ($inventory as $item)
+            <option value="{{ $item->warna }}">{{ $item->warna }}</option>
+        @endforeach
+    </select>
             </div>
 
             <div class="row">
                 <label>UKURAN :</label>
                 <input type="text" name="ukuran" value="{{ old('ukuran') }}" placeholder="All Size">
+                <select name="ukuran">
+        <option value="">-- pilih ukuran --</option>
+        @foreach ($inventory as $item)
+            <option value="{{ $item->ukuran }}">{{ $item->ukuran }}</option>
+        @endforeach
+    </select>
             </div>
 
-            <div class="row">
-                <label>STOK :</label>
-                <input type="number" name="stok" value="{{ old('stok') }}" placeholder="0">
-            </div>
-
-            <div class="row">
-                <label>PRODUK MASUK :</label>
-                <input type="number" name="masuk" value="{{ old('masuk') }}" placeholder="0">
-            </div>
 
             <div class="row">
                 <label>PRODUK KELUAR :</label>
                 <input type="number" name="keluar" value="{{ old('keluar') }}" placeholder="0">
+            </div>
+
+             <div class="row">
+                <label>PRODUK MASUK :</label>
+                <input type="number" name="masuk" value="{{ old('masuk') }}" placeholder="0">
             </div>
 
             <div class="row">
@@ -67,10 +87,11 @@
                 <input type="number" name="harga" value="{{ old('harga') }}" placeholder="Rp">
             </div>
 
-            <div class="row">
-                <label>KEUNTUNGAN :</label>
+           <div class="row">
+                <label>KEUNTUNGAN PER ITEM :</label>
                 <input type="number" name="keuntungan" value="{{ old('keuntungan') }}" placeholder="Profit per item">
             </div>
+
 
             <div class="row">
                 <label>KETERANGAN :</label>
@@ -112,6 +133,30 @@
         </form>
 
     </section>
+
+    <script>
+    function calculate() {
+        let masuk = parseInt(document.getElementById('masuk').value) || 0;
+        let harga = parseInt(document.getElementById('harga').value) || 0;
+        let keuntungan = parseInt(document.getElementById('keuntungan').value) || 0;
+
+        // perhitungan
+        let totalBayar = masuk * harga;
+        let profit = masuk * keuntungan;
+
+        // tampilkan ke user
+        document.getElementById('jumlahbayar_view').value = totalBayar;
+        document.getElementById('profit_view').value = profit;
+
+        // kirim ke server via hidden input
+        document.getElementById('jumlahbayar').value = totalBayar;
+        document.getElementById('profit').value = profit;
+    }
+
+    document.getElementById('masuk').addEventListener('input', calculate);
+    document.getElementById('harga').addEventListener('input', calculate);
+    document.getElementById('keuntungan').addEventListener('input', calculate);
+</script>
 
 </body>
 </html>

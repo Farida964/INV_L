@@ -39,9 +39,23 @@ class InventoryController extends Controller
             'keterangan' => 'required',
         ]);
 
-        Inventory::create($validatedData);
+        // Rumus stok final
+        $stokFinal = $request->stok + $request->masuk - $request->keluar;
 
-        return redirect()->route('inventory.index')->with('success', 'Data berhasil ditambahkan!');
+        Inventory::create([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
+            'warna' => $request->warna,
+            'ukuran' => $request->ukuran,
+            'stok' => $stokFinal, // ⬅ HASIL PERHITUNGAN
+            'masuk' => $request->masuk,
+            'keluar' => $request->keluar,
+            'harga' => $request->harga,
+            'keuntungan' => $request->keuntungan,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('inventory.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     public function show(Inventory $inventory): View
@@ -69,7 +83,21 @@ class InventoryController extends Controller
             'keterangan' => 'required',
         ]);
 
-        $inventory->update($validatedData);
+        // Rumus stok final (sama seperti di store)
+        $stokFinal = $request->stok + $request->masuk - $request->keluar;
+
+        $inventory->update([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
+            'warna' => $request->warna,
+            'ukuran' => $request->ukuran,
+            'stok' => $stokFinal, // ⬅ HASIL PERHITUNGAN
+            'masuk' => $request->masuk,
+            'keluar' => $request->keluar,
+            'harga' => $request->harga,
+            'keuntungan' => $request->keuntungan,
+            'keterangan' => $request->keterangan,
+        ]);
 
         return redirect()->route('inventory.index')->with('success', 'Data berhasil diperbarui!');
     }

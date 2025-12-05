@@ -75,8 +75,6 @@
         <div class="card-row"><span>Nama:</span> {{ $out->nama }}</div>
         <div class="card-row"><span>Warna:</span> {{ $out->warna }}</div>
         <div class="card-row"><span>Ukuran:</span> {{ $out->ukuran }}</div>
-        <div class="card-row"><span>Stok:</span> {{ $out->stok }}</div>
-        <div class="card-row"><span>Masuk:</span> {{ $out->masuk }}</div>
         <div class="card-row"><span>Keluar:</span> {{ $out->keluar }}</div>
         <div class="card-row"><span>Harga:</span> Rp {{ number_format($out->harga, 0, ',', '.') }}</div>
         <div class="card-row"><span>Keuntungan:</span> Rp {{ number_format($out->keuntungan, 0, ',', '.') }}</div>

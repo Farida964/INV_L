@@ -49,8 +49,9 @@
 
             <div class="row">
                 <label>STOK :</label>
-                <input type="number" name="stok" value="{{ old('stok') }}" placeholder="0">
+               <input type="number" name="stok" data-original="{{ old('stok', 0) }}" value="{{ old('stok', 0) }}">
             </div>
+            
 
             <div class="row">
                 <label>PRODUK MASUK :</label>
@@ -85,6 +86,18 @@
         </form>
 
     </section>
+
+   <script>
+function hitungStok() {
+    let stokAwal = parseInt(document.querySelector("[name='stok']").dataset.original || 0);
+    let masuk = parseInt(document.querySelector("[name='masuk']").value || 0);
+    let keluar = parseInt(document.querySelector("[name='keluar']").value || 0);
+
+    document.querySelector("[name='stok']").value = stokAwal + masuk - keluar;
+}
+
+document.addEventListener("input", hitungStok);
+</script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Output;
-use App\Models\Done; // <-- WAJIB
+use App\Models\Done; 
 use Illuminate\View\View;
 
 class OutputController extends Controller
@@ -22,30 +22,48 @@ class OutputController extends Controller
 
     public function create(): View
     {
-        return view('output.create');
+       $inventory = \App\Models\Inventory::all();
+    return view('output.create', compact('inventory'));
     }
 
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'kode' => 'required',
-            'nama' => 'required',
-            'warna' => 'required',
-            'ukuran' => 'required',
-            'stok' => 'required|integer',
-            'masuk' => 'required|integer',
-            'keluar' => 'required|integer',
-            'harga' => 'required|numeric',
-            'keuntungan' => 'required|numeric',
-            'keterangan' => 'required',
-            'status' => 'required',
-            'pembayaran' => 'required',
-        ]);
+   public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'kode' => 'required',
+        'nama' => 'required',
+        'warna' => 'required',
+        'ukuran' => 'required',
+        'masuk' => 'required|integer',
+        'keluar' => 'required|integer',
+        'harga' => 'required|numeric',
+        'keuntungan' => 'required|numeric',
+        'keterangan' => 'required',
+        'status' => 'required',
+        'pembayaran' => 'required',
+    ]);
 
-        Output::create($validatedData);
+    $inventory = \App\Models\Inventory::where('kode', $request->kode)->first();
+    $masuk = $request->input('masuk', 0);
+    $keluar = $request->input('keluar', 0);
 
-        return redirect()->route('output.index')->with('success', 'Data berhasil ditambahkan!');
+    // Update stok inventory
+    if ($inventory) {
+        $inventory->stok = $inventory->stok + $masuk - $keluar;
+        $inventory->save();
     }
+
+    // HITUNG OTOMATIS
+    $validatedData['jumlahbayar'] = $masuk * $request->harga;
+    $validatedData['profit'] = $masuk * $request->keuntungan;
+
+    // Isi stok untuk tabel output
+    $validatedData['stok'] = $inventory ? $inventory->stok : ($masuk - $keluar);
+
+    Output::create($validatedData);
+
+    return redirect()->route('output.index')->with('success', 'Data berhasil ditambahkan!');
+}
+
 
     public function show(Output $output): View
     {
@@ -61,12 +79,27 @@ class OutputController extends Controller
     {
         $output = Output::findOrFail($id);
 
-        $output->update($request->all());
+        $validatedData = $request->validate([
+            'kode' => 'required',
+            'nama' => 'required',
+            'warna' => 'required',
+            'ukuran' => 'required',
+            'masuk' => 'required|integer',
+            'keluar' => 'required|integer',
+            'harga' => 'required|numeric',
+            'keuntungan' => 'required|numeric',
+            'keterangan' => 'required',
+            'status' => 'required',
+            'pembayaran' => 'required',
+        ]);
+
+        $validatedData['jumlahbayar'] = $request->masuk * $request->harga;
+        $validatedData['profit'] = $request->masuk * $request->keuntungan;
+
+        $output->update($validatedData);
 
         if ($request->status === "arrive") {
-
             Done::create($output->toArray());
-
             $output->delete();
 
             return redirect()->route('done.index')
