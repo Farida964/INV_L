@@ -29,7 +29,6 @@
             <!-- LEFT LABEL RIGHT INPUT -->
             <div class="row">
                 <label>KODE PRODUK :</label>
-                <input type="text" name="kode" value="{{ old('kode') }}" placeholder="HJ-01">
                 <select name="kode">
         <option value="">-- pilih kode --</option>
         @foreach ($inventory as $item)
@@ -40,7 +39,6 @@
 
             <div class="row">
                 <label>NAMA PRODUK :</label>
-                <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Pashmina Ceruty">
                  <select name="nama">
         <option value="">-- pilih nama produk --</option>
         @foreach ($inventory as $item)
@@ -51,7 +49,6 @@
 
             <div class="row">
                 <label>WARNA :</label>
-                <input type="text" name="warna" value="{{ old('warna') }}" placeholder="Dusty Pink">
                   <select name="warna">
         <option value="">-- pilih warna --</option>
         @foreach ($inventory as $item)
@@ -62,7 +59,6 @@
 
             <div class="row">
                 <label>UKURAN :</label>
-                <input type="text" name="ukuran" value="{{ old('ukuran') }}" placeholder="All Size">
                 <select name="ukuran">
         <option value="">-- pilih ukuran --</option>
         @foreach ($inventory as $item)

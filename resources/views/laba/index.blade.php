@@ -67,9 +67,10 @@
         <td>{{ $item->keluar }}</td>
         <td>{{ $item->keterangan }}</td>
 
-        <td>Rp {{ number_format((int)$item->pembayaran, 0, ',', '.') }}</td>
-        <td>Rp {{ number_format((int)$item->keuntungan, 0, ',', '.') }}</td>
-        <td>Rp {{ number_format((int)$item->running_total, 0, ',', '.') }}</td>
+        <td>Rp {{ number_format($item->total_pembayaran, 0, ',', '.') }}</td>
+        <td>Rp {{ number_format($item->total_keuntungan, 0, ',', '.') }}</td>
+        <td>Rp {{ number_format($item->running_total, 0, ',', '.') }}</td>
+
     </tr>
 @endforeach
 </tbody>

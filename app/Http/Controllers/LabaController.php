@@ -16,17 +16,28 @@ class LabaController extends Controller
 
     public function index()
     {
-        // Ambil semua data Done
-        $data = Done::orderBy('created_at', 'asc')->get();
+         // Ambil semua data done
+    $data = Done::orderBy('created_at', 'asc')->get();
 
-        // Hitung total running keuntungan
-        $runningTotal = 0;
-        foreach ($data as $item) {
-            $runningTotal += $item->keuntungan;
-            $item->running_total = $runningTotal;
-        }
+    $runningTotal = 0;
 
-        return view('laba.index', compact('data'));
+    foreach ($data as $item) {
+
+        // 1. Hitung total pembayaran (qty x harga)
+        $item->total_pembayaran = $item->keluar * $item->harga;
+
+        // 2. Hitung total keuntungan per transaksi (qty x keuntungan per item)
+        $profit_per_transaksi = $item->keluar * $item->keuntungan;
+
+        // Tambahkan ke running total
+        $runningTotal += $profit_per_transaksi;
+
+        // Simpan untuk ditampilkan di blade
+        $item->total_keuntungan = $profit_per_transaksi;
+        $item->running_total = $runningTotal;
+    }
+
+    return view('laba.index', compact('data'));
     }
 
     public function store(Request $request)
