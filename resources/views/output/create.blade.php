@@ -90,7 +90,7 @@
 
 
             <div class="row">
-                <label>KETERANGAN :</label>
+                <label>NAMA PEMBELI :</label>
                 <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
             </div>
 
