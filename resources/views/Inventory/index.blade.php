@@ -99,6 +99,7 @@
 
             <td class="aksi">
                 <a href="{{ route('inventory.edit', $inv->id) }}" class="edit">Edit</a>
+                <a href="{{ route('inventory.input', $inv->id) }}" class="edit">Input</a>
 
                <form action="{{ route('inventory.destroy', $inv->id) }}" method="POST" class="delete-form">
     @csrf

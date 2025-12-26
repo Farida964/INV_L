@@ -11,17 +11,22 @@ return new class extends Migration
      *
      * @return void
      */
-   public function up()
+public function up()
 {
     Schema::table('outputs', function (Blueprint $table) {
-        $table->dropColumn('masuk');
+        $table->dropColumn('stok');
     });
 }
 
-public function down()
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
 {
     Schema::table('outputs', function (Blueprint $table) {
-        $table->integer('masuk');
+        $table->integer('stok');
     });
 }
 };

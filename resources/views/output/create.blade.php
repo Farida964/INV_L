@@ -29,42 +29,29 @@
             <!-- LEFT LABEL RIGHT INPUT -->
             <div class="row">
                 <label>KODE PRODUK :</label>
-                <select name="kode">
-        <option value="">-- pilih kode --</option>
-        @foreach ($inventory as $item)
-            <option value="{{ $item->kode }}">{{ $item->kode }}</option>
-        @endforeach
-    </select>
+                <select id="kode" name="inventory_id" required>
+                    <option value="">-- Pilih Kode --</option>
+    @foreach($inventories as $inv)
+                    <option value="{{ $inv->id }}">{{ $inv->kode }}</option>
+    @endforeach
+                </select>
+
             </div>
 
             <div class="row">
                 <label>NAMA PRODUK :</label>
-                 <select name="nama">
-        <option value="">-- pilih nama produk --</option>
-        @foreach ($inventory as $item)
-            <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-        @endforeach
-    </select>
+                 <input type="text" id="nama" disabled>
             </div>
 
             <div class="row">
                 <label>WARNA :</label>
-                  <select name="warna">
-        <option value="">-- pilih warna --</option>
-        @foreach ($inventory as $item)
-            <option value="{{ $item->warna }}">{{ $item->warna }}</option>
-        @endforeach
-    </select>
+                <input type="text" id="warna" disabled> 
             </div>
 
             <div class="row">
                 <label>UKURAN :</label>
-                <select name="ukuran">
-        <option value="">-- pilih ukuran --</option>
-        @foreach ($inventory as $item)
-            <option value="{{ $item->ukuran }}">{{ $item->ukuran }}</option>
-        @endforeach
-    </select>
+                <input type="text" id="ukuran" disabled>
+
             </div>
 
 
@@ -73,19 +60,15 @@
                 <input type="number" name="keluar" value="{{ old('keluar') }}" placeholder="0">
             </div>
 
-             <div class="row">
-                <label>PRODUK MASUK :</label>
-                <input type="number" name="masuk" value="{{ old('masuk') }}" placeholder="0">
-            </div>
 
             <div class="row">
                 <label>HARGA PRODUK :</label>
-                <input type="number" name="harga" value="{{ old('harga') }}" placeholder="Rp">
+                <input type="number" id="harga" name="harga">
             </div>
 
            <div class="row">
                 <label>KEUNTUNGAN PER ITEM :</label>
-                <input type="number" name="keuntungan" value="{{ old('keuntungan') }}" placeholder="Profit per item">
+               <input type="number" id="keuntungan" name="keuntungan">
             </div>
 
 
@@ -130,29 +113,38 @@
 
     </section>
 
-    <script>
-    function calculate() {
-        let masuk = parseInt(document.getElementById('masuk').value) || 0;
-        let harga = parseInt(document.getElementById('harga').value) || 0;
-        let keuntungan = parseInt(document.getElementById('keuntungan').value) || 0;
+   <script>
+document.getElementById('kode').addEventListener('change', function () {
+    const inventoryId = this.value;
 
-        // perhitungan
-        let totalBayar = masuk * harga;
-        let profit = masuk * keuntungan;
-
-        // tampilkan ke user
-        document.getElementById('jumlahbayar_view').value = totalBayar;
-        document.getElementById('profit_view').value = profit;
-
-        // kirim ke server via hidden input
-        document.getElementById('jumlahbayar').value = totalBayar;
-        document.getElementById('profit').value = profit;
+    if (!inventoryId) {
+        document.getElementById('nama').value = '';
+        document.getElementById('warna').value = '';
+        document.getElementById('ukuran').value = '';
+        document.getElementById('harga').value = '';
+        document.getElementById('keuntungan').value = '';
+        return;
     }
 
-    document.getElementById('masuk').addEventListener('input', calculate);
-    document.getElementById('harga').addEventListener('input', calculate);
-    document.getElementById('keuntungan').addEventListener('input', calculate);
+    fetch(`/inventory/detail/${inventoryId}`)
+        .then(res => {
+            if (!res.ok) throw new Error('Inventory tidak ditemukan');
+            return res.json();
+        })
+        .then(data => {
+            document.getElementById('nama').value = data.nama;
+            document.getElementById('warna').value = data.warna;
+            document.getElementById('ukuran').value = data.ukuran;
+            document.getElementById('harga').value = data.harga;
+            document.getElementById('keuntungan').value = data.keuntungan;
+        })
+        .catch(err => {
+            alert('Gagal mengambil data inventory');
+            console.error(err);
+        });
+});
 </script>
+
 
 </body>
 </html>

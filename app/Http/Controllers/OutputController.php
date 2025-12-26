@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Output;
-use App\Models\Done; 
+use App\Models\Done;
+use App\Models\Inventory;
 use Illuminate\View\View;
 
 class OutputController extends Controller
@@ -22,48 +23,46 @@ class OutputController extends Controller
 
     public function create(): View
     {
-       $inventory = \App\Models\Inventory::all();
-    return view('output.create', compact('inventory'));
+        $inventories = Inventory::all();
+        return view('output.create', compact('inventories'));
     }
 
-   public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'kode' => 'required',
-        'nama' => 'required',
-        'warna' => 'required',
-        'ukuran' => 'required',
-        'masuk' => 'required|integer',
-        'keluar' => 'required|integer',
-        'harga' => 'required|numeric',
-        'keuntungan' => 'required|numeric',
-        'keterangan' => 'required',
-        'status' => 'required',
-        'pembayaran' => 'required',
-    ]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'inventory_id' => 'required|exists:inventories,id',
+            'keluar' => 'required|integer|min:1',
+            'pembayaran' => 'required',
+            'keterangan' => 'nullable',
+        ]);
 
-    $inventory = \App\Models\Inventory::where('kode', $request->kode)->first();
-    $masuk = $request->input('masuk', 0);
-    $keluar = $request->input('keluar', 0);
+        $inventory = Inventory::findOrFail($request->inventory_id);
 
-    // Update stok inventory
-    if ($inventory) {
-        $inventory->stok = $inventory->stok + $masuk - $keluar;
-        $inventory->save();
+        if ($inventory->stok < $request->keluar) {
+            return back()->withErrors(['keluar' => 'Stok tidak mencukupi']);
+        }
+
+        Output::create([
+            'inventory_id' => $inventory->id,
+            'kode' => $inventory->kode,
+            'nama' => $inventory->nama,
+            'warna' => $inventory->warna,
+            'ukuran' => $inventory->ukuran,
+            'masuk' => 0,
+            'keluar' => $request->keluar,
+            'harga' => $inventory->harga,
+            'keuntungan' => $inventory->keuntungan,
+            'status' => 'on progress',
+            'pembayaran' => $request->pembayaran,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        // Kurangi stok
+        $inventory->decrement('stok', $request->keluar);
+
+        return redirect()->route('output.index')
+            ->with('success', 'Checkout berhasil');
     }
-
-    // HITUNG OTOMATIS
-    $validatedData['jumlahbayar'] = $masuk * $request->harga;
-    $validatedData['profit'] = $masuk * $request->keuntungan;
-
-    // Isi stok untuk tabel output
-    $validatedData['stok'] = $inventory ? $inventory->stok : ($masuk - $keluar);
-
-    Output::create($validatedData);
-
-    return redirect()->route('output.index')->with('success', 'Data berhasil ditambahkan!');
-}
-
 
     public function show(Output $output): View
     {
@@ -75,44 +74,54 @@ class OutputController extends Controller
         return view('output.edit', compact('output'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Output $output)
     {
-        $output = Output::findOrFail($id);
-
-        $validatedData = $request->validate([
-            'kode' => 'required',
-            'nama' => 'required',
-            'warna' => 'required',
-            'ukuran' => 'required',
-            'masuk' => 'required|integer',
-            'keluar' => 'required|integer',
-            'harga' => 'required|numeric',
-            'keuntungan' => 'required|numeric',
-            'keterangan' => 'required',
+        $request->validate([
             'status' => 'required',
             'pembayaran' => 'required',
+            'keterangan' => 'nullable',
         ]);
 
-        $validatedData['jumlahbayar'] = $request->masuk * $request->harga;
-        $validatedData['profit'] = $request->masuk * $request->keuntungan;
+        $output->update([
+            'status' => $request->status,
+            'pembayaran' => $request->pembayaran,
+            'keterangan' => $request->keterangan,
+        ]);
 
-        $output->update($validatedData);
+        if ($request->status === 'arrive') {
+            // Map only the fields expected by the `dones` table and provide
+            // sensible defaults for columns that may be missing on `outputs`.
+            $inventory = Inventory::find($output->inventory_id);
 
-        if ($request->status === "arrive") {
-            Done::create($output->toArray());
+            Done::create([
+                'kode' => $output->kode,
+                'nama' => $output->nama,
+                'warna' => $output->warna,
+                'ukuran' => $output->ukuran,
+                'stok' => $inventory ? $inventory->stok : 0,
+                'masuk' => $output->masuk ?? 0,
+                'keluar' => $output->keluar ?? 0,
+                'harga' => $output->harga ?? 0,
+                'keuntungan' => $output->keuntungan ?? 0,
+                'keterangan' => $output->keterangan,
+                'status' => $output->status,
+                'pembayaran' => $output->pembayaran,
+            ]);
+
             $output->delete();
 
             return redirect()->route('done.index')
-                ->with('success', 'Data berhasil dipindahkan ke Done!');
+                ->with('success', 'Data dipindahkan ke Done');
         }
 
         return redirect()->route('output.index')
-            ->with('success', 'Data berhasil diperbarui!');
+            ->with('success', 'Data berhasil diperbarui');
     }
 
     public function destroy(Output $output)
     {
         $output->delete();
-        return redirect()->route('output.index')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('output.index')
+            ->with('success', 'Data berhasil dihapus');
     }
 }

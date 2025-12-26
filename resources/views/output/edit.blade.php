@@ -51,11 +51,6 @@
             </div>
 
             <div class="row">
-                <label>STOK :</label>
-                <input type="number" name="stok" value="{{ old('stok', $output->stok) }}">
-            </div>
-
-            <div class="row">
                 <label>PRODUK MASUK :</label>
                 <input type="number" name="masuk" value="{{ old('masuk', $output->masuk) }}">
             </div>

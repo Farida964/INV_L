@@ -25,6 +25,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Resource routes untuk Inventory, Output, Done
     Route::resource('inventory', InventoryController::class);
+
+    Route::get('/inventory/{id}/input', [InventoryController::class, 'input'])
+    ->name('inventory.input');
+
+    Route::post('/inventory/{id}/input', [InventoryController::class, 'storeInput'])
+    ->name('inventory.storeInput');
+
+    Route::get('/inventory/detail/{id}', function ($id) {
+    return \App\Models\Inventory::findOrFail($id);
+
+    Route::get('/inventory/detail/{id}', [InventoryController::class, 'detail']);
+});
+
+
+
     Route::resource('output', OutputController::class);
     Route::resource('done', DoneController::class);
 
