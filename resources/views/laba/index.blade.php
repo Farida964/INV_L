@@ -75,6 +75,11 @@
 @endforeach
 </tbody>
 
+<a href="{{ route('laba.download') }}" class="btn-download">
+    Download Report
+</a>
+
+
 </table>
 
 <script>

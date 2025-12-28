@@ -2,91 +2,95 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Laba;
 use App\Models\Done;
-use Illuminate\View\View;
+use Illuminate\Http\Request;
+// Fallback CSV export implemented inline to avoid dependency issues
 
 class LabaController extends Controller
 {
-   public function __construct()
+    public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth');
     }
 
+    /**
+     * Tampilkan halaman laba
+     */
     public function index()
     {
-         // Ambil semua data done
-    $data = Done::orderBy('created_at', 'asc')->get();
+        $data = $this->getLabaData();
 
-    $runningTotal = 0;
-
-    foreach ($data as $item) {
-
-        // 1. Hitung total pembayaran (qty x harga)
-        $item->total_pembayaran = $item->keluar * $item->harga;
-
-        // 2. Hitung total keuntungan per transaksi (qty x keuntungan per item)
-        $profit_per_transaksi = $item->keluar * $item->keuntungan;
-
-        // Tambahkan ke running total
-        $runningTotal += $profit_per_transaksi;
-
-        // Simpan untuk ditampilkan di blade
-        $item->total_keuntungan = $profit_per_transaksi;
-        $item->running_total = $runningTotal;
+        return view('laba.index', compact('data'));
     }
 
-    return view('laba.index', compact('data'));
-    }
-
-    public function store(Request $request)
+    /**
+     * Download laporan Excel
+     */
+    public function downloadReport()
     {
-        $validatedData = $request->validate([
-            'tanggal' => 'required',
-            'produkpembelian' => 'required',
-            'qty' => 'required|numeric',
-            'an' => 'required',
-            'totalpembayaran' => 'required|integer',
-            'keuntungan' => 'required|integer',
-            'totalkeuntungan' => 'required|integer',
-        ]);
+        $data = $this->getLabaData();
 
-        Laba::create($validatedData);
+        $fileName = 'laporan-laba-' . date('d-m-Y') . '.csv';
 
-        return redirect()->route('laba.index')->with('success', 'Data berhasil ditambahkan!');
-    }
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"{$fileName}\"",
+        ];
 
-    public function show(Inventory $inventory): View
-    {
-        return view('laba.show', compact('laba'));
-    }
+        $callback = function () use ($data) {
+            $handle = fopen('php://output', 'w');
 
-    public function edit(Laba $laba): View
-    {
-        return view('laba.edit', compact('laba'));
-    }
-
-    public function update(Request $request, Laba $laba)
-    {
-        $validatedData = $request->validate([
-            'tanggal' => 'required',
-            'produkpembelian' => 'required',
-            'qty' => 'required|numeric',
-            'an' => 'required',
-            'totalpembayaran' => 'required|integer',
-            'keuntungan' => 'required|integer',
-            'totalkeuntungan' => 'required|integer',
+            // Headings
+            fputcsv($handle, [
+                'Tanggal',
+                'Produk',
+                'Qty',
+                'Atas Nama',
+                'Total Pembayaran',
+                'Keuntungan',
+                'Total Keuntungan',
             ]);
 
-        $laba->update($validatedData);
+            foreach ($data as $item) {
+                fputcsv($handle, [
+                    $item->created_at->format('d-m-Y'),
+                    $item->nama,
+                    $item->keluar,
+                    $item->keterangan,
+                    $item->total_pembayaran,
+                    $item->total_keuntungan,
+                    $item->running_total,
+                ]);
+            }
 
-        return redirect()->route('laba.index')->with('success', 'Data berhasil diperbarui!');
+            fclose($handle);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 
-    public function destroy(Laba $laba)
+    /**
+     * Ambil & hitung data laba (dipakai index + export)
+     */
+    private function getLabaData()
     {
-        $laba->delete();
-        return redirect()->route('laba.index')->with('success', 'Data berhasil dihapus!');
+        $data = Done::orderBy('created_at', 'asc')->get();
+
+        $runningTotal = 0;
+
+        foreach ($data as $item) {
+
+            // Total pembayaran
+            $item->total_pembayaran = $item->keluar * $item->harga;
+
+            // Keuntungan per transaksi
+            $item->total_keuntungan = $item->keluar * $item->keuntungan;
+
+            // Running total keuntungan
+            $runningTotal += $item->total_keuntungan;
+            $item->running_total = $runningTotal;
+        }
+
+        return $data;
     }
 }

@@ -53,7 +53,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('output.moveToDone');
     
     // Laba page
+    
+    Route::get('/laba/download', [LabaController::class, 'download'])
+    ->name('laba.download');
+
     Route::get('/laba', [LabaController::class, 'index'])->name('laba.index');
+    Route::get('/laba/download', [LabaController::class, 'downloadReport'])->name('laba.download');
+
+
 
     // logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
