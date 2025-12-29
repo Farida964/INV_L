@@ -95,10 +95,10 @@
     }
 
     .card-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+        flex-direction: row;
+        gap: 2px;
         font-size: 13px;
+        margin-bottom: -10px;
     }
 
     .card-row p,

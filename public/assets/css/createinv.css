@@ -147,7 +147,19 @@ textarea {
     color: white;
     font-weight: 600;
     margin: 0 10px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px; /* keep buttons visually consistent */
+    min-height: 44px; /* touch-friendly height */
+    box-sizing: border-box;
+    border: 2px solid transparent; /* prevent unexpected borders */
+    outline: none;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 .cancel {

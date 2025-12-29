@@ -1,47 +1,49 @@
 /* ===== CARD GRID ===== */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
-    margin-top: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); /* 320px */
+    gap: 1.875rem; /* 30px */
+    margin-top: 1.5625rem; /* 25px */
 }
 
 /* ===== CARD ===== */
 .inv-card {
     background: #f3d6d1;
-    border: 2px solid #ec9485;
-    border-radius: 25px;
-    padding: 25px;
-    box-shadow: 0 4px 10px rgba(255, 185, 216, 0.25);
+    border: 0.125rem solid #ec9485; /* 2px */
+    border-radius: 1.5625rem; /* 25px */
+    padding: 1.5625rem; /* 25px */
+    box-shadow: 0 0.25rem 0.625rem rgba(255, 185, 216, 0.25);
     color: #4a3d42;
-    font-size: 15px;
+    font-size: 0.9375rem; /* 15px */
 }
 
 /* ===== ROW ===== */
 .card-row {
     display: flex;
     justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px dotted #f3d6d1;
+    padding: 0.375rem 0; /* 6px */
+    border-bottom: 0.0625rem dotted #f3d6d1;
 }
 
 /* Label */
 .card-row span {
-    font-weight: bold;
+    font-weight: 700;
     color: #4a3d42;
 }
 
+/* ===== ACTIONS ===== */
 .card-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 18px;
+    margin-top: 1.125rem; /* 18px */
+    gap: 0.625rem;
 }
 
 .card-actions a.edit,
 .card-actions button.delete {
-    padding: 8px 16px;
-    border-radius: 14px;
-    font-size: 14px;
+    padding: 0.5rem 1rem; /* 8px 16px */
+    border-radius: 0.875rem; /* 14px */
+    font-size: 0.875rem; /* 14px */
     font-weight: 600;
     cursor: pointer;
     border: none;
@@ -51,198 +53,80 @@
 /* Edit */
 .card-actions a.edit {
     background: #db8675;
-    border: 1px solid #000;
-    color: white;
+    border: 0.0625rem solid #000;
+    color: #ffffff;
     text-decoration: none;
 }
-
 
 /* Delete */
 .card-actions button.delete {
     background: #ff6b8a;
-    border: 1px solid #000;
-    color: white;
+    border: 0.0625rem solid #000;
+    color: #ffffff;
 }
+
 .card-actions button.delete:hover {
     background: #ff5275;
 }
 
-
+/* ===== ADD BUTTON ===== */
 .add {
-    padding: 10px 18px;
-    border-radius: 20px;
+    padding: 0.625rem 1.125rem; /* 10px 18px */
+    border-radius: 1.25rem; /* 20px */
     text-decoration: none;
     font-weight: 600;
-    margin-left: 20px;
-    border: 2px solid #000; 
+    margin-left: 1.25rem;
+    border: 0.125rem solid #000;
     cursor: pointer;
     display: inline-block;
     background: #db8675;
-    color: white;
+    color: #ffffff;
+    font-size: 0.9rem;
 }
 
-
-/* popup */
+/* ===== POPUP ===== */
 .modal {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.5);
     justify-content: center;
     align-items: center;
+    padding: 1rem;
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
+    background: #ffffff;
+    padding: 1.25rem; /* 20px */
+    border-radius: 0.5rem; /* 8px */
+    width: 18.75rem; /* 300px */
+    max-width: 100%;
     text-align: center;
 }
 
 .modal-buttons {
-    margin-top: 15px;
+    margin-top: 0.9375rem; /* 15px */
     display: flex;
     justify-content: space-around;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+}
+
+.yes,
+.no {
+    padding: 0.5rem 0.9375rem; /* 8px 15px */
+    border-radius: 0.3125rem; /* 5px */
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
 }
 
 .yes {
     background: red;
     color: #4a3d42;
-    padding: 8px 15px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
 }
 
 .no {
     background: gray;
     color: #4a3d42;
-    padding: 8px 15px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-
-/* ===============================
-   LARGE DESKTOP (≥1400px)
-================================ */
-@media (min-width: 1400px) {
-    .card-container {
-        gap: 32px;
-    }
-
-    .inv-card {
-        padding: 28px;
-        font-size: 16px;
-    }
-}
-
-/* ===============================
-   LAPTOP (≤1200px)
-================================ */
-@media (max-width: 1200px) {
-    .card-container {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 24px;
-    }
-
-    .inv-card {
-        padding: 22px;
-    }
-}
-
-/* ===============================
-   TABLET (≤900px)
-================================ */
-@media (max-width: 900px) {
-    .card-container {
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 20px;
-    }
-
-    .inv-card {
-        padding: 20px;
-        font-size: 14px;
-    }
-
-    .card-actions a.edit,
-    .card-actions button.delete {
-        padding: 7px 14px;
-        font-size: 13px;
-    }
-}
-
-/* ===============================
-   MOBILE BESAR (≤600px)
-================================ */
-@media (max-width: 600px) {
-    .card-container {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .inv-card {
-        padding: 18px;
-        border-radius: 20px;
-    }
-
-    .card-row {
-        font-size: 14px;
-    }
-
-    .card-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .card-actions a.edit,
-    .card-actions button.delete {
-        width: 100%;
-        text-align: center;
-    }
-
-    .add {
-        margin-left: 0;
-        margin-top: 12px;
-        width: fit-content;
-    }
-}
-
-/* ===============================
-   MOBILE KECIL (≤400px)
-================================ */
-@media (max-width: 400px) {
-    .inv-card {
-        padding: 15px;
-        font-size: 13px;
-    }
-
-    .card-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
-
-    .card-row span {
-        font-size: 12px;
-        opacity: 0.9;
-    }
-
-    .modal-content {
-        width: 90%;
-        padding: 18px;
-    }
-
-    .modal-buttons {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .yes,
-    .no {
-        width: 100%;
-    }
 }

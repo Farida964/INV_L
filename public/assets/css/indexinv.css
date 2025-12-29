@@ -42,26 +42,25 @@
    BUTTON
 ========================= */
 
-.edit {
-    background: #7db4ff;
-    color: #ffffff;
-    padding: 0.35rem 0.65rem;        /* 5px 10px */
-    border-radius: 0.5rem;           /* 8px */
-    text-decoration: none;
-    font-size: 0.8rem;               /* 13px */
-    display: inline-block;
-}
-
+.edit,
 .delete {
-    background: #ff6b6b;
     color: #ffffff;
     border: none;
-    padding: 0.35rem 0.65rem;
+    padding: 0.45rem 0.85rem; /* balanced padding for consistent size */
     border-radius: 0.5rem;
     cursor: pointer;
     font-size: 0.8rem;
     margin-top: 0.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    min-height: 34px; /* ensure consistent height across elements */
+    box-sizing: border-box;
 }
+
+.edit { background: #7db4ff; }
+.delete { background: #ff6b6b; }
 
 .add {
     padding: 10px 18px;
@@ -198,6 +197,8 @@
         width: 100%;
         display: block;
     }
+
+
 
     .modal-content {
         width: 100%;
