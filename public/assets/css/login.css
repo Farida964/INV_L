@@ -136,13 +136,103 @@ button:hover {
     }
 }
 
-/* ====== Responsive ====== */
-@media (max-width: 480px) {
+/* ===============================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* ===== Small Phones (≤ 360px) ===== */
+@media (max-width: 360px) {
+    body {
+        padding: 12px;
+    }
+
     .box {
-        padding: 25px 25px;
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .login-box h3 {
+        font-size: 20px;
+    }
+
+    .desc {
+        font-size: 12px;
+    }
+
+    input {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    button {
+        padding: 10px 0;
+        font-size: 14px;
+    }
+}
+
+/* ===== Phones (≤ 480px) ===== */
+@media (max-width: 480px) {
+    body {
+        height: auto;
+        align-items: flex-start;
+        padding-top: 30px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .box {
+        padding: 25px;
     }
 
     .login-box h3 {
         font-size: 22px;
     }
 }
+
+/* ===== Tablet Portrait (≤ 768px) ===== */
+@media (max-width: 768px) {
+    .container {
+        max-width: 440px;
+    }
+
+    .box {
+        padding: 30px;
+    }
+
+    .login-box h3 {
+        font-size: 24px;
+    }
+
+    .desc {
+        font-size: 13px;
+    }
+}
+
+/* ===== Tablet Landscape / Small Laptop (≤ 1024px) ===== */
+@media (max-width: 1024px) {
+    body {
+        padding: 30px;
+    }
+
+    .container {
+        max-width: 460px;
+    }
+}
+
+/* ===== Large Desktop (≥ 1200px) ===== */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 480px;
+    }
+
+    .box {
+        padding: 35px 40px;
+    }
+
+    .login-box h3 {
+        font-size: 28px;
+    }
+}
+

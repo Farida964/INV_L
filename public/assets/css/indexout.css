@@ -126,9 +126,123 @@
 }
 
 
-/* Responsive */
-@media (max-width: 500px) {
+/* ===============================
+   LARGE DESKTOP (≥1400px)
+================================ */
+@media (min-width: 1400px) {
+    .card-container {
+        gap: 32px;
+    }
+
+    .inv-card {
+        padding: 28px;
+        font-size: 16px;
+    }
+}
+
+/* ===============================
+   LAPTOP (≤1200px)
+================================ */
+@media (max-width: 1200px) {
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    .inv-card {
+        padding: 22px;
+    }
+}
+
+/* ===============================
+   TABLET (≤900px)
+================================ */
+@media (max-width: 900px) {
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    .inv-card {
+        padding: 20px;
+        font-size: 14px;
+    }
+
+    .card-actions a.edit,
+    .card-actions button.delete {
+        padding: 7px 14px;
+        font-size: 13px;
+    }
+}
+
+/* ===============================
+   MOBILE BESAR (≤600px)
+================================ */
+@media (max-width: 600px) {
     .card-container {
         grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .inv-card {
+        padding: 18px;
+        border-radius: 20px;
+    }
+
+    .card-row {
+        font-size: 14px;
+    }
+
+    .card-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card-actions a.edit,
+    .card-actions button.delete {
+        width: 100%;
+        text-align: center;
+    }
+
+    .add {
+        margin-left: 0;
+        margin-top: 12px;
+        width: fit-content;
+    }
+}
+
+/* ===============================
+   MOBILE KECIL (≤400px)
+================================ */
+@media (max-width: 400px) {
+    .inv-card {
+        padding: 15px;
+        font-size: 13px;
+    }
+
+    .card-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .card-row span {
+        font-size: 12px;
+        opacity: 0.9;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 18px;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .yes,
+    .no {
+        width: 100%;
     }
 }

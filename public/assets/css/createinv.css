@@ -163,3 +163,112 @@ textarea {
 .add:hover {
     background: #49b649;
 }
+
+
+/* =========================
+   RESPONSIVE - TABLET
+========================= */
+@media (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 25px 20px;
+    }
+
+    .brand h1 {
+        font-size: 28px;
+    }
+
+    .brand span {
+        font-size: 30px;
+    }
+
+    .form-wrapper {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .row {
+        grid-template-columns: 160px auto;
+    }
+}
+
+/* =========================
+   RESPONSIVE - MOBILE
+========================= */
+@media (max-width: 600px) {
+    body {
+        background: #f2f2f2;
+    }
+
+    .header {
+        padding: 20px 15px;
+    }
+
+    .brand h1 {
+        font-size: 24px;
+    }
+
+    .brand span {
+        font-size: 26px;
+    }
+
+    .menu-switch {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-switch button {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .form-wrapper {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    .form-box {
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 18px;
+    }
+
+    /* Ubah layout label & input jadi vertikal */
+    .row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .row label {
+        font-size: 14px;
+    }
+
+    .row input,
+    .row textarea,
+    .row select {
+        font-size: 13px;
+        padding: 10px 12px;
+        border-radius: 14px;
+    }
+
+    textarea {
+        height: 90px;
+    }
+
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 0;
+        padding: 12px;
+        font-size: 14px;
+    }
+}

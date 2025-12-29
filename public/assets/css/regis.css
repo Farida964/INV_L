@@ -1,4 +1,4 @@
-/* ===== Global Reset ===== */
+/* ====== Global Reset ====== */
 * {
     margin: 0;
     padding: 0;
@@ -6,124 +6,191 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* ===== Body: FULL CENTER ===== */
 body {
     background: #fbeff4;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 1.25rem;
 }
 
-/* ===== Wrapper ===== */
+/* ====== Container ====== */
 .container {
     width: 100%;
-    max-width: 420px;
+    max-width: 26rem; /* ±416px */
 }
 
-/* ===== Card ===== */
+/* ====== Box ====== */
 .box {
-    background: #fff;
-    border-radius: 18px;
-    padding: 30px 35px;
-    border: 1px solid #f4d7de;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    border-radius: 1.1rem;
+    padding: 1.6rem 1.7rem;
+    border: 0.08rem solid #f4d7de;
+    box-shadow: 0 0.5rem 1.4rem rgba(0, 0, 0, 0.08);
     animation: fadeIn 0.35s ease-in-out;
 }
 
-/* ===== Title ===== */
+/* ====== Title ====== */
 .login-box h3 {
     text-align: center;
     font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 26px;
+    margin-bottom: 0.35rem;
+    font-size: 1.45rem;
     color: #d16c86;
 }
 
-/* ===== Description ===== */
+/* ====== Description ====== */
 .desc {
     text-align: center;
-    font-size: 14px;
+    font-size: 0.85rem;
     color: #8a5061;
-    margin-bottom: 20px;
-    line-height: 1.4;
+    margin-bottom: 1.2rem;
+    line-height: 1.45;
 }
 
-/* ===== Form ===== */
+/* ====== Form ====== */
 label {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.85rem;
     color: #703c4a;
+}
+
+.label {
+    margin-bottom: 0.75rem;
 }
 
 input {
     width: 100%;
-    padding: 12px 14px;
-    margin: 6px 0 15px 0;
-    border: 1px solid #e4b7c7;
-    border-radius: 10px;
+    padding: 0.65rem 0.8rem;
+    margin-top: 0.35rem;
+    border: 0.08rem solid #e4b7c7;
+    border-radius: 0.6rem;
     background: #fff7fa;
-    font-size: 14px;
+    font-size: 0.85rem;
     transition: 0.2s ease;
 }
 
 input:focus {
     outline: none;
     border-color: #d16c86;
-    box-shadow: 0 0 5px rgba(209, 108, 134, 0.3);
+    box-shadow: 0 0 0.3rem rgba(209, 108, 134, 0.25);
 }
 
-/* ===== Button Section ===== */
+/* ====== Error Message ====== */
+.error {
+    background: #ffd6df;
+    color: #a02540;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.6rem;
+}
+
+.message {
+    font-size: 0.7rem;
+    color: #a02540;
+    margin-top: 0.25rem;
+}
+
+/* ====== Button & Link ====== */
 .button_card {
+    margin-top: 1rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5px;
+    flex-direction: column;
+    gap: 0.6rem;
 }
 
 .notif {
-    font-size: 13px;
+    font-size: 0.75rem;
+    text-align: center;
     color: #d16c86;
     text-decoration: none;
 }
+
 .notif:hover {
     text-decoration: underline;
 }
 
-.button {
+button {
+    width: 100%;
     background: #d16c86;
-    border: none;
-    padding: 10px 22px;
     color: white;
-    border-radius: 10px;
-    font-weight: 600;
+    padding: 0.65rem 0;
+    border: none;
+    border-radius: 0.65rem;
     cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
     transition: 0.25s ease;
 }
 
-.button:hover {
+button:hover {
     background: #b85a73;
 }
 
-/* ===== Error Message ===== */
-.message, .error {
-    font-size: 13px;
-    color: #a02540;
-}
-
-/* ===== Fade In ===== */
+/* ====== Animation ====== */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(0.75rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 480px) {
+/* ===============================
+   RESPONSIVE
+================================ */
+
+/* HP kecil (≤ 360px) */
+@media (max-width: 22.5rem) {
     .box {
-        padding: 25px;
+        padding: 1.3rem;
+        border-radius: 1rem;
     }
+
     .login-box h3 {
-        font-size: 22px;
+        font-size: 1.25rem;
+    }
+
+    input {
+        font-size: 0.8rem;
+    }
+
+    button {
+        font-size: 0.85rem;
+    }
+}
+
+/* HP normal (≤ 480px) */
+@media (max-width: 30rem) {
+    body {
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+}
+
+/* Tablet (≤ 768px) */
+@media (max-width: 48rem) {
+    .container {
+        max-width: 28rem;
+    }
+}
+
+/* Desktop besar (≥ 1200px) */
+@media (min-width: 75rem) {
+    .container {
+        max-width: 30rem;
+    }
+
+    .login-box h3 {
+        font-size: 1.6rem;
     }
 }

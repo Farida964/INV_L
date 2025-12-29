@@ -1,13 +1,17 @@
-/* ===== CONTAINER ===== */
+/* =========================
+   CONTAINER
+========================= */
 .inv-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* maksimal 4 card per baris */
-    gap: 25px;
-    margin-top: 25px;
-    padding: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+    padding: 12px;
 }
 
-/* Responsive */
+/* =========================
+   RESPONSIVE GRID
+========================= */
 @media (max-width: 1200px) {
     .inv-container {
         grid-template-columns: repeat(3, 1fr);
@@ -17,51 +21,88 @@
 @media (max-width: 900px) {
     .inv-container {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }
 
 @media (max-width: 600px) {
     .inv-container {
         grid-template-columns: 1fr;
+        padding: 8px;
+        gap: 16px;
     }
 }
 
-/* ===== CARD ===== */
+/* =========================
+   CARD
+========================= */
 .inv-card {
     background: #f3d6d1;
-    border-radius: 24px;
-    padding: 20px 22px;
-    border: 2px solid #ec9485;
-    box-shadow: 0 4px 12px rgba(255, 182, 212, 0.22);
-    transition: 0.2s ease;
+    border-radius: 20px;
+    padding: 18px 20px;
+    border: 1.8px solid #ec9485;
+    box-shadow: 0 6px 14px rgba(255, 182, 212, 0.22);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-/* tetap tanpa hover */
+/* tetap tanpa hover efek gerak */
 .inv-card:hover {
     transform: none;
+    box-shadow: 0 8px 18px rgba(255, 182, 212, 0.25);
 }
 
-/* ===== CARD ROW (Label : Value) ===== */
+/* =========================
+   CARD ROW (Label : Value)
+========================= */
 .card-row {
     display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
     font-size: 14px;
-    padding-bottom: 6px;
     border-bottom: 1px dashed #ffd6e9;
-}
-
-.card-row span {
-    font-weight: 600;
-    color: #352022;
-}
-
-/* Value style */
-.card-row {
-    color: #4a3d42; 
+    color: #4a3d42;
 }
 
 .card-row:last-child {
-    border-bottom: none; /* baris terakhir tanpa garis */
+    border-bottom: none;
+}
+
+/* Label */
+.card-row span {
+    font-weight: 600;
+    color: #352022;
+    white-space: nowrap;
+}
+
+/* Value */
+.card-row p,
+.card-row div {
+    margin: 0;
+    text-align: right;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+@media (max-width: 480px) {
+    .inv-card {
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .card-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        font-size: 13px;
+    }
+
+    .card-row p,
+    .card-row div {
+        text-align: left;
+    }
 }

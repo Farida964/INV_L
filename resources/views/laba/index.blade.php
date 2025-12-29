@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/profit.css') }}">
+     <link rel="stylesheet" href="{{ asset('assets/css/indexinv.css') }}">
 </head>
 <body>
 
@@ -75,7 +76,7 @@
 @endforeach
 </tbody>
 
-<a href="{{ route('laba.download') }}" class="btn-download">
+<a href="{{ route('laba.download') }}" class="add">
     Download Report
 </a>
 
