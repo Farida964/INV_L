@@ -10,7 +10,7 @@
     <!-- FORM WRAPPER -->
     <section class="form-wrapper">
 
-        <h3 class="form-title">PRODUK ON PROGRESS</h3>
+        <h3 class="form-title">PEMBELIAN PRODUK</h3>
 
         {{-- Error Message --}}
         @if ($errors->any())
@@ -106,8 +106,8 @@
 
             <!-- BUTTONS -->
             <div class="btn-group">
-                <a href="{{ route('output.index') }}" class="btn cancel">Batal</a>
-                <button type="submit" class="btn add">Tambah</button>
+                <a href="{{ route('output.index') }}" class="btn cancel">Cancel</a>
+                <button type="submit" class="btn add">Add</button>
             </div>
         </form>
 

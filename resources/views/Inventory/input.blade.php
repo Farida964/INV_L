@@ -65,8 +65,8 @@
 
      <!-- BUTTONS -->
             <div class="btn-group">
-                <a href="{{ route('inventory.index') }}" class="btn cancel">Batal</a>
-                <button type="submit" class="btn add">Simpan</button>
+                <a href="{{ route('inventory.index') }}" class="btn cancel">Cancel</a>
+                <button type="submit" class="btn add">Save</button>
             </div>
     </form>
 

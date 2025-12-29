@@ -51,17 +51,17 @@
 
             <div class="row">
                 <label>STOK :</label>
-                <input type="number" name="stok" value="{{ old('stok', $inventory->stok) }}" placeholder="0">
+                <input type="number" name="stok" value="{{ old('stok', $inventory->stok) }}" placeholder="0" readonly>
             </div>
 
             <div class="row">
                 <label>PRODUK MASUK :</label>
-                <input type="number" name="masuk" value="{{ old('masuk', $inventory->masuk) }}" placeholder="0">
+                <input type="number" name="masuk" value="{{ old('masuk', $inventory->masuk) }}" placeholder="0" readonly>
             </div>
 
             <div class="row">
                 <label>PRODUK KELUAR :</label>
-                <input type="number" name="keluar" value="{{ old('keluar', $inventory->keluar) }}" placeholder="0">
+                <input type="number" name="keluar" value="{{ old('keluar', $inventory->keluar) }}" placeholder="0" readonly>
             </div>
 
             <div class="row">
@@ -82,8 +82,8 @@
 
       <!-- BUTTONS -->
             <div class="btn-group">
-                <a href="{{ route('inventory.index') }}" class="btn cancel">Batal</a>
-                <button type="submit" class="btn add">Tambah</button>
+                <a href="{{ route('inventory.index') }}" class="btn cancel">Cancel</a>
+                <button type="submit" class="btn add">Save</button>
             </div>
     </form>
 

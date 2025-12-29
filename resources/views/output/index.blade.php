@@ -89,7 +89,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="button" class="delete" data-id="{{ $out->id }}" >
-                    Hapus
+                    Delete
                 </button>
             </form>
         </div>
