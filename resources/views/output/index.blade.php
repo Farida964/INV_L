@@ -23,31 +23,12 @@
     </div>
 </div>
 
-   <div class="lamierre-navbar">
-    <div class="nav-left">
-        <h1 class="brand">Lamierrè <span>Hijab</span></h1>
-    </div>
-
-<!-- MENU NAV -->
-    <div class="nav-center">
-        <div class="nav-tabs">
-            <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
-            <a href="{{ route('output.index') }}" class="tab active">Checkout</a>
-            <a href="{{ route('done.index') }}" class="tab">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab">Profit</a>
-             <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
-        </div>
-    </div>
-
-    <div class="nav-right">
-        <h1 class="title">Checkout</h1>
-    </div>
-</div>
-
 <!-- popup logout -->
  <div id="logoutPopup" class="popup-overlay" style="display:none;">
     <div class="popup-box">
+        <h2>Wait!</h2>
         <p>Are you sure you want to log out?</p>
+        <p>Make your choice</p>
 
         <div class="popup-buttons">
             <button onclick="confirmLogout()" class="yes">Yes</button>
@@ -61,6 +42,33 @@
 </form>
 
 
+
+<div class="inventory-header">
+
+    <!-- Brand -->
+    <div class="header-brand">
+        <h1>Lamierrè <span>Hijab</span></h1>
+    </div>
+
+    <!-- Nav Tabs -->
+    <div class="header-tabs">
+        <a href="{{ route('inventory.index') }}" class="tab ">Inventory</a>
+        <a href="{{ route('output.index') }}" class="tab active">Checkout</a>
+        <a href="{{ route('done.index') }}" class="tab">Done</a>
+        <a href="{{ route('laba.index') }}" class="tab">Profit</a>
+        <a href="#" class="tab logout" onclick="showLogoutPopup()">Logout</a>
+    </div>
+
+    <!-- Title -->
+    <div class="header-title">
+        <h2>Inventory</h2>
+        <p>Manage your inventory, stay focused and keep the spirit up</p>
+    </div>
+
+</div>
+
+
+
 <!-- TABEL DATA -->
      
     <br>
@@ -71,6 +79,10 @@
     @foreach($allOutput as $out)
     <div class="inv-card">
 
+        <div class="card-header">
+            An {{ $out->keterangan }}
+        </div>
+
         <div class="card-row"><span>Kode:</span> {{ $out->kode }}</div>
         <div class="card-row"><span>Nama:</span> {{ $out->nama }}</div>
         <div class="card-row"><span>Warna:</span> {{ $out->warna }}</div>
@@ -78,18 +90,17 @@
         <div class="card-row"><span>Qty:</span> {{ $out->keluar }}</div>
         <div class="card-row"><span>Harga:</span> Rp {{ number_format($out->harga, 0, ',', '.') }}</div>
         <div class="card-row"><span>Keuntungan:</span> Rp {{ number_format($out->keuntungan, 0, ',', '.') }}</div>
-        <div class="card-row"><span>Keterangan:</span> {{ $out->keterangan }}</div>
         <div class="card-row"><span>Status:</span> {{ $out->status }}</div>
         <div class="card-row"><span>Pembayaran:</span> {{ $out->pembayaran }}</div>
 
         <div class="card-actions">
-            <a href="{{ route('output.edit', $out->id) }}" class="edit">Edit</a>
+            <a href="{{ route('output.edit', $out->id) }}" class="edit">Edit ✎</a>
 
             <form action="{{ route('output.destroy', $out->id) }}" method="POST" class="delete-form">
                 @csrf
                 @method('DELETE')
                 <button type="button" class="delete" data-id="{{ $out->id }}" >
-                    Delete
+                    Delete 🗑
                 </button>
             </form>
         </div>

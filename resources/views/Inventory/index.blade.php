@@ -6,6 +6,28 @@
     <link rel="stylesheet" href="{{ asset('assets/css/indexinv.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
     
+    <style>
+        /* Ensure confirmation modal and logout popup appear above the header/navbar */
+        #confirmModal, #logoutPopup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none; /* JS toggles to 'flex' when shown */
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+        }
+
+        /* Make sure inner boxes are above overlay and positioned properly */
+        #confirmModal .modal-content,
+        #logoutPopup .popup-box {
+            z-index: 100000;
+            position: relative;
+        }
+    </style>
+
     <title>Inventory</title>
 </head>
 
@@ -22,15 +44,13 @@
     </div>
 </div>
 
-   <div class="lamierre-navbar">
-    <div class="nav-left">
-        <h1 class="brand">Lamierrè <span>Hijab</span></h1>
-    </div>
 
 <!-- popup logout -->
  <div id="logoutPopup" class="popup-overlay" style="display:none;">
     <div class="popup-box">
+        <h2>Wait!</h2>
         <p>Are you sure you want to log out?</p>
+        <p>Make your choice</p>
 
         <div class="popup-buttons">
             <button onclick="confirmLogout()" class="yes">Yes</button>
@@ -43,22 +63,29 @@
     @csrf
 </form>
 
-<!-- MENU NAV -->
-    <div class="nav-center">
-        <div class="nav-tabs">
-            <a href="{{ route('inventory.index') }}" class="tab active">Inventory</a>
-            <a href="{{ route('output.index') }}" class="tab">Checkout</a>
-            <a href="{{ route('output.index') }}" class="tab">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab">Profit</a>
-            <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
-        </div>
+<div class="inventory-header">
+
+    <!-- Brand -->
+    <div class="header-brand">
+        <h1>Lamierrè <span>Hijab</span></h1>
     </div>
 
-    <div class="nav-right">
-        <h1 class="title">Inventory</h1>
+    <!-- Nav Tabs -->
+    <div class="header-tabs">
+        <a href="{{ route('inventory.index') }}" class="tab active">Inventory</a>
+        <a href="{{ route('output.index') }}" class="tab">Checkout</a>
+        <a href="{{ route('done.index') }}" class="tab">Done</a>
+        <a href="{{ route('laba.index') }}" class="tab">Profit</a>
+        <a href="#" class="tab logout" onclick="showLogoutPopup()">Logout</a>
     </div>
+
+    <!-- Title -->
+    <div class="header-title">
+        <h2>Inventory</h2>
+        <p>Manage your inventory, stay focused and keep the spirit up</p>
+    </div>
+
 </div>
-
 
 
 <!-- TABEL DATA -->

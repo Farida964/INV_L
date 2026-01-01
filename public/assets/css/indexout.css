@@ -8,8 +8,8 @@
 
 /* ===== CARD ===== */
 .inv-card {
-    background: #f3d6d1;
-    border: 0.125rem solid #ec9485; /* 2px */
+    background: #E3A7B6;
+    border: 0.125rem solid #4a3d42; /* 2px */
     border-radius: 1.5625rem; /* 25px */
     padding: 1.5625rem; /* 25px */
     box-shadow: 0 0.25rem 0.625rem rgba(255, 185, 216, 0.25);
@@ -17,18 +17,36 @@
     font-size: 0.9375rem; /* 15px */
 }
 
+.card-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 0.125rem solid #1e1e1e;
+}
 /* ===== ROW ===== */
 .card-row {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 0.375rem 0; /* 6px */
-    border-bottom: 0.0625rem dotted #f3d6d1;
+    background: #fdecef;
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Label */
 .card-row span {
     font-weight: 700;
-    color: #4a3d42;
+    color: #3a2a2a;
+}
+
+.card-row p {
+    margin: 0;
+    font-weight: 400;
+    color: #1e1e1e;
 }
 
 /* ===== ACTIONS ===== */
@@ -52,7 +70,7 @@
 
 /* Edit */
 .card-actions a.edit {
-    background: #db8675;
+    background: #D16C86;
     border: 0.0625rem solid #000;
     color: #ffffff;
     text-decoration: none;
@@ -60,7 +78,7 @@
 
 /* Delete */
 .card-actions button.delete {
-    background: #ff6b8a;
+    background: #844354;
     border: 0.0625rem solid #000;
     color: #ffffff;
 }
@@ -79,7 +97,7 @@
     border: 0.125rem solid #000;
     cursor: pointer;
     display: inline-block;
-    background: #db8675;
+    background: #d9778b;
     color: #ffffff;
     font-size: 0.9rem;
 }

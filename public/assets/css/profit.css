@@ -11,7 +11,7 @@ table {
 
 /* ===== HEADER ===== */
 table thead {
-    background: #db8675; /* pink latte lembut */
+    background: #E3A7B6; /* pink latte lembut */
 }
 
 table thead th {
@@ -31,7 +31,7 @@ table tbody tr {
 
 /* baris selang-seling (zebra) */
 table tbody tr:nth-child(even) {
-    background: #e0c5c0;
+    background: #fdf7f6;
 }
 
 table tbody td {

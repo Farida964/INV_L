@@ -10,16 +10,24 @@
      <link rel="stylesheet" href="{{ asset('assets/css/indexinv.css') }}">
 </head>
 <body>
-
-<div class="lamierre-navbar">
-    <div class="nav-left">
-        <h1 class="brand">Lamierrè <span>Hijab</span></h1>
+<!-- POP UP KONFIRMASI -->
+<div id="confirmModal" class="modal">
+    <div class="modal-content">
+        <p>Yakin mau hapus?</p>
+        <div class="modal-buttons">
+            <button id="confirmYes" class="yes">Ya</button>
+            <button id="confirmNo" class="no">Tidak</button>
+        </div>
     </div>
+</div>
 
-   <!-- popup logout -->
+
+<!-- popup logout -->
  <div id="logoutPopup" class="popup-overlay" style="display:none;">
     <div class="popup-box">
+        <h2>Wait!</h2>
         <p>Are you sure you want to log out?</p>
+        <p>Make your choice</p>
 
         <div class="popup-buttons">
             <button onclick="confirmLogout()" class="yes">Yes</button>
@@ -32,20 +40,33 @@
     @csrf
 </form>
 
-    <div class="nav-center">
-        <div class="nav-tabs">
-            <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
-            <a href="{{ route('output.index') }}" class="tab">Checkout</a>
-            <a href="{{ route('done.index') }}" class="tab">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab active">Profit</a>
-             <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
-        </div>
+
+<div class="inventory-header">
+
+    <!-- Brand -->
+    <div class="header-brand">
+        <h1>Lamierrè <span>Hijab</span></h1>
     </div>
 
-    <div class="nav-right">
-        <h1 class="title">Profit</h1>
+    <!-- Nav Tabs -->
+    <div class="header-tabs">
+        <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
+        <a href="{{ route('output.index') }}" class="tab">Checkout</a>
+        <a href="{{ route('done.index') }}" class="tab">Done</a>
+        <a href="{{ route('laba.index') }}" class="tab active">Profit</a>
+        <a href="#" class="tab logout" onclick="showLogoutPopup()">Logout</a>
     </div>
+
+    <!-- Title -->
+    <div class="header-title">
+        <h2>Inventory</h2>
+        <p>Manage your inventory, stay focused and keep the spirit up</p>
+    </div>
+
 </div>
+
+
+<!-- TABLE -->
 
 <table>
     <thead>

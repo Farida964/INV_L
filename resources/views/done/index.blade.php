@@ -9,31 +9,15 @@
     <title>Done</title>
 </head>
 <body>
- 
-   <div class="lamierre-navbar">
-    <div class="nav-left">
-        <h1 class="brand">Lamierrè <span>Hijab</span></h1>
-    </div>
 
-    <div class="nav-center">
-        <div class="nav-tabs">
-            <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
-            <a href="{{ route('output.index') }}" class="tab">Checkout</a>
-            <a href="{{ route('done.index') }}" class="tab active">Done</a>
-            <a href="{{ route('laba.index') }}" class="tab">Profit</a>
-           <a href="#" class="tab" onclick="showLogoutPopup()">Log Out</a>
-        </div>
-    </div>
 
-    <div class="nav-right">
-        <h1 class="title">Done</h1>
-    </div>
-</div>
 
 <!-- popup logout -->
  <div id="logoutPopup" class="popup-overlay" style="display:none;">
     <div class="popup-box">
+        <h2>Wait!</h2>
         <p>Are you sure you want to log out?</p>
+        <p>Make your choice</p>
 
         <div class="popup-buttons">
             <button onclick="confirmLogout()" class="yes">Yes</button>
@@ -45,6 +29,34 @@
 <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display:none;">
     @csrf
 </form>
+
+
+<div class="inventory-header">
+
+    <!-- Brand -->
+    <div class="header-brand">
+        <h1>Lamierrè <span>Hijab</span></h1>
+    </div>
+
+    <!-- Nav Tabs -->
+    <div class="header-tabs">
+        <a href="{{ route('inventory.index') }}" class="tab">Inventory</a>
+        <a href="{{ route('output.index') }}" class="tab">Checkout</a>
+        <a href="{{ route('done.index') }}" class="tab active">Done</a>
+        <a href="{{ route('laba.index') }}" class="tab">Profit</a>
+        <a href="#" class="tab logout" onclick="showLogoutPopup()">Logout</a>
+    </div>
+
+    <!-- Title -->
+    <div class="header-title">
+        <h2>Inventory</h2>
+        <p>Manage your inventory, stay focused and keep the spirit up</p>
+    </div>
+
+</div>
+
+
+<!-- CONTENT -->
 
 
 <div class="inv-container">

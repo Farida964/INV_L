@@ -1,286 +1,192 @@
+/* ============================= */
+/* BASE */
+/* ============================= */
+:root {
+    --pink-bg: #f2c6cf;
+    --pink-input: #ffffff;
+    --pink-btn: #d97a8a;
+    --pink-cancel: #7a3b44;
+    --dark: #1e1e1e;
+}
+
 body {
     background: #f2f2f2;
     font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
+    font-size: 1rem;
 }
 
-.header {
-    width: 100%;
-    background: #d8a9a3;
-    padding: 30px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.brand h1 {
-    font-size: 32px;
-    margin: 0;
-    font-weight: 600;
-}
-.brand span {
-    font-size: 34px;
-}
-
-.menu-switch {
-    background: white;
-    padding: 6px 14px;
-    border-radius: 30px;
-}
-.menu-switch button {
-    border: none;
-    background: transparent;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-}
-.menu-switch .active {
-    background: #ececec;
-    border-radius: 20px;
-}
-
-.title {
-    font-size: 28px;
-    margin: 0;
-    font-weight: bold;
-}
-
+/* ============================= */
+/* FORM WRAPPER */
+/* ============================= */
 .form-wrapper {
-    padding: 30px;
-    max-width: 650px;
-    margin: 30px auto;
+    max-width: 40rem;
+    margin: 2rem auto;
+    padding: 1.5rem;
 }
 
+/* ============================= */
+/* TITLE */
+/* ============================= */
 .form-title {
     text-align: center;
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
+    margin-bottom: 1rem;
 }
 
+/* INFO TEXT (sesuai desain) */
+.form-wrapper::before {
+    content: "Input data baru dengan teliti yaa, jangan lupa re-check sebelum klik Add +";
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+/* ============================= */
+/* FORM BOX */
+/* ============================= */
 .form-box {
-    background: #f7cccc;
-    padding: 30px;
-    border-radius: 14px;
+    background: var(--pink-bg);
+    border-radius: 2rem;
+    border: 0.125rem solid var(--dark);
+    padding: 2rem 2.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08);
 }
 
+/* ============================= */
+/* ROW */
+/* ============================= */
 .row {
     display: grid;
-    grid-template-columns: 200px auto;
-    margin-bottom: 15px;
+    grid-template-columns: 11rem 1fr;
     align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
 }
 
 .row label {
-    font-size: 15px;
+    font-size: 0.9rem;
     font-weight: 600;
-}
-.row select {
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 1.8px solid #f1b7cc;
-    background: #fff5fa;
-    color: #5c3b44;
-    font-size: 14px;
-    transition: all 0.25s ease;
-    cursor: pointer;
+    color: #3a2a2a;
 }
 
-.row select:hover {
-    border-color: #d16c86;
-    background: #ffe8f1;
-}
-
-.row select:focus {
-    outline: none;
-    border-color: #d16c86;
-    box-shadow: 0 0 6px rgba(209, 108, 134, 0.35);
-}
-
-.row select option {
-    background: #fff5fa;
-    color: #5c3b44;
-    font-size: 14px;
-}
-
-.row select option:hover {
-    background: #ffe3ef;
-}
-
+/* ============================= */
+/* INPUT & TEXTAREA */
+/* ============================= */
 .row input,
 .row textarea {
     width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 2rem;
     border: none;
-    background: white;
-    padding: 10px 14px;
-    border-radius: 25px;
-    font-size: 14px;
+    background: var(--pink-input);
+    font-size: 0.85rem;
     outline: none;
 }
 
-textarea {
-    height: 70px;
+.row textarea {
+    height: 4.5rem;
     resize: none;
 }
 
-/* ERROR STYLING */
+/* ============================= */
+/* ERROR BOX */
+/* ============================= */
 .error-box {
     background: #ffe0e0;
-    border-left: 4px solid red;
-    padding: 10px 15px;
-    border-radius: 7px;
-    margin-bottom: 20px;
+    border-left: 0.25rem solid red;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
 }
 
+/* ============================= */
 /* BUTTON GROUP */
+/* ============================= */
 .btn-group {
-    text-align: center;
-    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .btn {
-    padding: 10px 25px;
-    border-radius: 20px;
-    text-decoration: none;
-    color: white;
+    padding: 0.55rem 1.75rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    border: 0.125rem solid var(--dark);
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 220px; /* keep buttons visually consistent */
-    min-height: 44px; /* touch-friendly height */
-    box-sizing: border-box;
-    border: 2px solid transparent; /* prevent unexpected borders */
-    outline: none;
+    min-width: 7rem;
 }
 
-.btn:focus {
-    outline: none;
-    box-shadow: none;
+/* ADD */
+.btn.add {
+    background: var(--pink-btn);
 }
 
-.cancel {
-    background: #ff6b6b;
-}
-.cancel:hover {
-    background: #e45858;
+.btn.add:hover {
+    background: #c06574;
 }
 
-.add {
-    background: #59d659;
-}
-.add:hover {
-    background: #49b649;
+/* CANCEL */
+.btn.cancel {
+    background: var(--pink-cancel);
 }
 
+.btn.cancel:hover {
+    background: #5f2e35;
+}
 
-/* =========================
-   RESPONSIVE - TABLET
-========================= */
-@media (max-width: 900px) {
-    .header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-        padding: 25px 20px;
-    }
-
-    .brand h1 {
-        font-size: 28px;
-    }
-
-    .brand span {
-        font-size: 30px;
-    }
-
+/* ============================= */
+/* RESPONSIVE - TABLET */
+/* ============================= */
+@media (max-width: 48rem) {
     .form-wrapper {
-        padding: 20px;
-        margin: 20px auto;
-    }
-
-    .row {
-        grid-template-columns: 160px auto;
-    }
-}
-
-/* =========================
-   RESPONSIVE - MOBILE
-========================= */
-@media (max-width: 600px) {
-    body {
-        background: #f2f2f2;
-    }
-
-    .header {
-        padding: 20px 15px;
-    }
-
-    .brand h1 {
-        font-size: 24px;
-    }
-
-    .brand span {
-        font-size: 26px;
-    }
-
-    .menu-switch {
-        width: 100%;
-        text-align: center;
-    }
-
-    .menu-switch button {
-        font-size: 13px;
-        padding: 6px 12px;
-    }
-
-    .form-wrapper {
-        padding: 15px;
-        margin: 15px auto;
+        padding: 1rem;
     }
 
     .form-box {
-        padding: 20px;
+        padding: 1.75rem;
     }
 
-    .form-title {
-        font-size: 18px;
+    .row {
+        grid-template-columns: 9rem 1fr;
     }
+}
 
-    /* Ubah layout label & input jadi vertikal */
+/* ============================= */
+/* RESPONSIVE - MOBILE */
+/* ============================= */
+@media (max-width: 30rem) {
     .row {
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 0.4rem;
     }
 
     .row label {
-        font-size: 14px;
+        font-size: 0.8rem;
     }
 
     .row input,
-    .row textarea,
-    .row select {
-        font-size: 13px;
-        padding: 10px 12px;
-        border-radius: 14px;
-    }
-
-    textarea {
-        height: 90px;
+    .row textarea {
+        font-size: 0.8rem;
     }
 
     .btn-group {
-        display: flex;
         flex-direction: column;
-        gap: 10px;
     }
 
     .btn {
         width: 100%;
-        margin: 0;
-        padding: 12px;
-        font-size: 14px;
     }
 }
