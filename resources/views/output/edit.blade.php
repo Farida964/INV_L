@@ -5,8 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Data Output</title>
     <link rel="stylesheet" href="{{ asset('assets/css/createinv.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
 </head>
 <body>
+<div class="inventory-header">
+
+    <!-- Brand -->
+    <div class="header-brand">
+        <h1>Lamierrè <span>Hijab</span></h1>
+    </div>
+
+    <!-- Nav Tabs -->
+    <div class="header-tabs">
+      <p>Edit Data Pembelian Produk</p>
+    </div>
+
+    <!-- Title -->
+    <div class="header-title">
+        <h2>Inventory</h2>
+        <p>Manage your inventory, stay focused and keep the spirit up</p>
+    </div>
+
+</div>
+
 
     <!-- FORM WRAPPER -->
     <section class="form-wrapper">
@@ -31,52 +52,52 @@
             <!-- LEFT LABEL RIGHT INPUT -->
 
             <div class="row">
-                <label>KODE PRODUK :</label>
+                <label>Kode Produk :</label>
                 <input type="text" name="kode" value="{{ old('kode', $output->kode) }}">
             </div>
 
             <div class="row">
-                <label>NAMA PRODUK :</label>
+                <label>Nama Produk :</label>
                 <input type="text" name="nama" value="{{ old('nama', $output->nama) }}">
             </div>
 
             <div class="row">
-                <label>WARNA :</label>
+                <label>Warna :</label>
                 <input type="text" name="warna" value="{{ old('warna', $output->warna) }}">
             </div>
 
             <div class="row">
-                <label>UKURAN :</label>
+                <label>Ukuran :</label>
                 <input type="text" name="ukuran" value="{{ old('ukuran', $output->ukuran) }}">
             </div>
 
             <div class="row">
-                <label>PRODUK MASUK :</label>
+                <label>Produk Masuk :</label>
                 <input type="number" name="masuk" value="{{ old('masuk', $output->masuk) }}">
             </div>
 
             <div class="row">
-                <label>PRODUK KELUAR :</label>
+                <label>Produk Keluar :</label>
                 <input type="number" name="keluar" value="{{ old('keluar', $output->keluar) }}">
             </div>
 
             <div class="row">
-                <label>HARGA PRODUK :</label>
+                <label>Harga Produk :</label>
                 <input type="number" name="harga" value="{{ old('harga', $output->harga) }}">
             </div>
 
             <div class="row">
-                <label>KEUNTUNGAN :</label>
+                <label>Keuntungan :</label>
                 <input type="number" name="keuntungan" value="{{ old('keuntungan', $output->keuntungan) }}">
             </div>
 
             <div class="row">
-                <label>KETERANGAN :</label>
+                <label>Keterangan :</label>
                 <textarea name="keterangan">{{ old('keterangan', $output->keterangan) }}</textarea>
             </div>
 
             <div class="row">
-                <label>STATUS :</label>
+                <label>Status :</label>
                 <select name="status" id="status">
                     <option value="">Pilih status</option>
 
@@ -103,7 +124,7 @@
             </div>
 
             <div class="row">
-                <label>PEMBAYARAN :</label>
+                <label>Pembayaran :</label>
                 <select name="pembayaran" id="pembayaran">
                     <option value="">Pilih pembayaran</option>
 
@@ -126,7 +147,7 @@
 
             <!-- BUTTONS -->
             <div class="btn-group">
-                <a href="{{ route('output.index') }}" class="btn cancel">Batal</a>
+                <a href="{{ route('output.index') }}" class="btn cancel">Cancel</a>
                 <button type="submit" class="btn add">Update</button>
             </div>
         </form>

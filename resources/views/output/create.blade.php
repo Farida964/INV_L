@@ -5,12 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Output</title>
     <link rel="stylesheet" href="{{ asset('assets/css/createinv.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/nav.css') }}">
 </head>
 <body>
+
+<div class="inventory-header">
+
+    <!-- Brand -->
+    <div class="header-brand">
+        <h1>Lamierrè <span>Hijab</span></h1>
+    </div>
+
+    <!-- Nav Tabs -->
+    <div class="header-tabs">
+      <p>Input Data Pemblian Produk</p>
+    </div>
+
+    <!-- Title -->
+    <div class="header-title">
+        <h2>Inventory</h2>
+        <p>Manage your inventory, stay focused and keep the spirit up</p>
+    </div>
+
+</div>
+
+
+
     <!-- FORM WRAPPER -->
     <section class="form-wrapper">
 
-        <h3 class="form-title">PEMBELIAN PRODUK</h3>
 
         {{-- Error Message --}}
         @if ($errors->any())
@@ -28,60 +51,60 @@
 
             <!-- LEFT LABEL RIGHT INPUT -->
             <div class="row">
-                <label>KODE PRODUK :</label>
+                <label>Kode Produk :</label>
                 <select id="kode" name="inventory_id" required>
                     <option value="">-- Pilih Kode --</option>
-    @foreach($inventories as $inv)
+                        @foreach($inventories as $inv)
                     <option value="{{ $inv->id }}">{{ $inv->kode }}</option>
-    @endforeach
+                        @endforeach
                 </select>
 
             </div>
 
             <div class="row">
-                <label>NAMA PRODUK :</label>
+                <label>Nama Produk :</label>
                  <input type="text" id="nama" disabled>
             </div>
 
             <div class="row">
-                <label>WARNA :</label>
+                <label>Warna :</label>
                 <input type="text" id="warna" disabled> 
             </div>
 
             <div class="row">
-                <label>UKURAN :</label>
+                <label>Ukuran :</label>
                 <input type="text" id="ukuran" disabled>
 
             </div>
 
 
             <div class="row">
-                <label>PRODUK KELUAR :</label>
+                <label>Produk Keluar :</label>
                 <input type="number" name="keluar" value="{{ old('keluar') }}" placeholder="0">
             </div>
 
 
             <div class="row">
-                <label>HARGA PRODUK :</label>
+                <label>Harga Produk :</label>
                 <input type="number" id="harga" name="harga">
             </div>
 
            <div class="row">
-                <label>KEUNTUNGAN PER ITEM :</label>
+                <label>Keuntungan  :</label>
                <input type="number" id="keuntungan" name="keuntungan">
             </div>
 
 
             <div class="row">
-                <label>NAMA PEMBELI :</label>
+                <label>Nama Pembeli :</label>
                 <textarea name="keterangan" placeholder="Tambahkan keterangan">{{ old('keterangan') }}</textarea>
             </div>
 
             <div class="row">
-                <label>STATUS :</label>
+                <label>Status :</label>
                 <select name="status" id="status" class="status">{{ old('status') }}
 
-                <option value="">Pilih status</option>
+                <option value="">-- Pilih status --</option>
                 <option value="list" {{ old('status') == 'List' ? 'selected' : '' }}>List</option>
                 <option value="packing" {{ old('status') == 'Packing' ? 'selected' : '' }}>Packing</option>
                 <option option value="delivering" {{ old('status') == 'Delivering' ? 'selected' : '' }}>Delivering</option>
@@ -92,10 +115,10 @@
             </div>
 
             <div class="row">
-                <label>PEMBAYARAN :</label>
+                <label>Pembayaran :</label>
                  <select name="pembayaran" id="pembayaran">
                 
-                <option value="" class="pembayaran">Pilih pembayaran</option> {{ old('pembayaran') }}
+                <option value="" class="pembayaran">-- Pilih pembayaran --</option> {{ old('pembayaran') }}
                 <option value="tunai" {{ old('pembayaran') == 'tunai' ? 'selected' : '' }}>Tunai</option>
                 <option value="cod" {{ old('pembayaran') == 'cod' ? 'selected' : '' }}>COD</option>
                 <option value="transfer" {{ old('pembayaran') == 'transfer' ? 'selected' : '' }}>Transfer</option>
